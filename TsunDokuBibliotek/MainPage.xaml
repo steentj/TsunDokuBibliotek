@@ -18,14 +18,14 @@
                         Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Bog">
-                    <Grid Padding="10">
-                        <Frame HeightRequest="160"
+                    <Grid Padding="5">
+                        <Frame HeightRequest="80"
                                Style="{StaticResource CardView}">
-                            <Grid Padding="0" ColumnDefinitions="160,*">
+                            <Grid Padding="0" ColumnDefinitions="80,*">
                                 <Image Aspect="AspectFill"
                                        Source="{Binding BilledeLink}"
-                                       WidthRequest="160"
-                                       HeightRequest="160"/>
+                                       WidthRequest="80"
+                                       HeightRequest="80"/>
                                 <VerticalStackLayout
                                     Grid.Column="1"
                                     VerticalOptions="Center"
