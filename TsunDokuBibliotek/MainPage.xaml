@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TsunDokuBibliotek.MainPage"
+             xmlns:model="clr-namespace:TsundokuLibrary.Model"
+             xmlns:viewmodel="clr-namespace:TsundokuLibrary.ViewModel"
+             x:DataType="viewmodel:BøgerViewModel"
+             Title="{Binding Title}">
+
+    <Grid
+        ColumnDefinitions="*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+
+        <CollectionView ItemsSource="{Binding Bøger}"
+                        SelectionMode="None"
+                        Grid.ColumnSpan="2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Bog">
+                    <Grid Padding="10">
+                        <Frame HeightRequest="160"
+                               Style="{StaticResource CardView}">
+                            <Grid Padding="0" ColumnDefinitions="160,*">
+                                <Image Aspect="AspectFill"
+                                       Source="{Binding BilledeLink}"
+                                       WidthRequest="160"
+                                       HeightRequest="160"/>
+                                <VerticalStackLayout
+                                    Grid.Column="1"
+                                    VerticalOptions="Center"
+                                    Padding="10">
+                                    <Label Style="{StaticResource MediumLabel}"
+                                           Text="{Binding Forfatter}"/>
+                                    <Label Style="{StaticResource LargeLabel}"
+                                           Text="{Binding Titel}"/>
+                                    <Label Style="{StaticResource SmallLabel}"
+                                           Text="{Binding Status}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Text="Indlæs bøger"
+                Command="{Binding GetBøgerASyncCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="1"
+                Grid.Column="0"
+                Style="{StaticResource ButtonOutline}"
+                Margin="8" />
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Center"
+                           Color="{StaticResource Primary}"
+                           Grid.RowSpan="2"
+                           Grid.ColumnSpan="2" />
+    </Grid>
+ 
+</ContentPage>
+

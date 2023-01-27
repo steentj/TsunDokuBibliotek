@@ -1,0 +1,12 @@
+﻿global using CommunityToolkit.Mvvm.ComponentModel;
+global using CommunityToolkit.Mvvm.Input;
+global using TsundokuLibrary.Model;
+global using TsundokuLibrary.ViewModel;
+global using TsundokuLibrary.Repository;
+global using System;
+global using System.Collections.ObjectModel;
+global using System.ComponentModel;
+global using System.Diagnostics;
+global using System.Runtime.CompilerServices;
+global using System.Text.Json;
+global using Microsoft.Extensions.Logging;

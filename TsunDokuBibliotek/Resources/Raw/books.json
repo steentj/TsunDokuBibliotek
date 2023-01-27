@@ -1,0 +1,50 @@
+﻿[
+  {
+    "BilledeLink": "defaultbook.png",
+    "Forfatter": "Douglas Hofstadter",
+    "Titel": "Gödel, Escher, Bach: an Eternal Golden Braid",
+    "Hvorfor": "Alle læste den på datalogi studiet, så jeg måtte jo have den på et tidspunkt.",
+    "Status": "Købt",
+    "Format": "Papirbog"
+  },
+  {
+    "BilledeLink": "defaultbook.png",
+    "Forfatter": "Joshua Kerierevsky",
+    "Titel": "Refactoring to Patterns",
+    "Hvorfor": "Synes at være den logiske opfølgning til Fowlers Refactoring bog.",
+    "Status": "Købt",
+    "Format": "Papirbog"
+  },
+  {
+    "BilledeLink": "defaultbook.png",
+    "Forfatter": "John W. Foreman",
+    "Titel": "Data Smart",
+    "Hvorfor": "Anbefalet som en god og \"let\" intro til Data Science.",
+    "Status": "Købt",
+    "Format": "Papirbog"
+  },
+  {
+    "BilledeLink": "defaultbook.png",
+    "Forfatter": "Ian Stewart",
+    "Titel": "In Pursuit of the Unknown",
+    "Hvorfor": "Blog anbefaling som en spændende bog om matematik ligninger for ikke matematikere.",
+    "Status": "Købt",
+    "Format": "Papirbog"
+  },
+  {
+    "BilledeLink": "defaultbook.png",
+    "Forfatter": "Nicklas Brendborg",
+    "Titel": "Gopler ældes baglæns",
+    "Hvorfor": "Fantastiske anmeldelser og emnet \"længere liv\" bliver mere og mere aktuelt 😟",
+    "Status": "Læst",
+    "Format": "Papirbog"
+  },
+  {
+    "BilledeLink": "defaultbook.png",
+    "Forfatter": "Tom Holland",
+    "Titel": "Herredømmet",
+    "Hvorfor": "Gode anmeldelser og emnet har interesseret mig de sidste år. ",
+    "Status": "Læst",
+    "Format":  "Papirbog"
+  }
+]
