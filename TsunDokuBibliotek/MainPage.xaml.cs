@@ -2,11 +2,9 @@
 
 public partial class MainPage : ContentPage
 {
-   public MainPage(BøgerViewModel viewModel)
-   {
-      InitializeComponent();
-      BindingContext = viewModel;
-   }
+    public MainPage(BøgerViewModel viewModel)
+    {
+        InitializeComponent();
+        BindingContext = viewModel;
+    }
 }
-
-

@@ -7,6 +7,12 @@
              x:DataType="viewmodel:BøgerViewModel"
              Title="{Binding Title}">
 
+    <ContentPage.Resources>
+         <ResourceDictionary>
+             <viewmodel:StatusToColorConverter x:Key="StatusToColorConverter" />
+         </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid
         ColumnDefinitions="*,*"
         ColumnSpacing="5"
@@ -20,7 +26,8 @@
                 <DataTemplate x:DataType="model:Bog">
                     <Grid Padding="5">
                         <Frame HeightRequest="80"
-                               Style="{StaticResource CardView}">
+                               Style="{StaticResource CardView}"
+                               BorderColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}">
                             <Grid Padding="0" ColumnDefinitions="80,*">
                                 <Image Aspect="AspectFill"
                                        Source="{Binding BilledeLink}"
