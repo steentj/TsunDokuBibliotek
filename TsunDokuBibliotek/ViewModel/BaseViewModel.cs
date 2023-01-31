@@ -1,4 +1,4 @@
-﻿namespace TsundokuLibrary.ViewModel;
+﻿namespace TsundokuBibliotek.ViewModel;
 
 public partial class BaseViewModel : ObservableObject
 {

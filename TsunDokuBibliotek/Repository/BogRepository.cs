@@ -1,4 +1,4 @@
-﻿namespace TsundokuLibrary.Repository;
+﻿namespace TsundokuBibliotek.Repository;
 
 public class BogRepository
 {

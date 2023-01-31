@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace TsunDokuBibliotek;
+namespace TsundokuBibliotek;
 
 [Application]
 public class MainApplication : MauiApplication

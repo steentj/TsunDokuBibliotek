@@ -1,4 +1,4 @@
-﻿namespace TsunDokuBibliotek;
+﻿namespace TsundokuBibliotek.View;
 
 public partial class MainPage : ContentPage
 {

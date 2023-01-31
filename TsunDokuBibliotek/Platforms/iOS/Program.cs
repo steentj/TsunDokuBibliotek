@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace TsunDokuBibliotek;
+namespace TsundokuBibliotek;
 
 public class Program
 {

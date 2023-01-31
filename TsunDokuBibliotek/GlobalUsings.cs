@@ -1,8 +1,9 @@
 ﻿global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
-global using TsundokuLibrary.Model;
-global using TsundokuLibrary.ViewModel;
-global using TsundokuLibrary.Repository;
+global using TsundokuBibliotek.Model;
+global using TsundokuBibliotek.ViewModel;
+global using TsundokuBibliotek.View;
+global using TsundokuBibliotek.Repository;
 global using System;
 global using System.Collections.ObjectModel;
 global using System.ComponentModel;

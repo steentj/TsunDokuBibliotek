@@ -1,9 +1,12 @@
-﻿namespace TsunDokuBibliotek.View;
+
+﻿namespace TsundokuBibliotek.View;
 
 public partial class BogDetaljer : ContentPage
 {
-	public BogDetaljer()
+	public BogDetaljer(BogDetaljerViewModel viewModel)
 	{
 		InitializeComponent();
+
+		BindingContext = viewModel;
 	}
 }

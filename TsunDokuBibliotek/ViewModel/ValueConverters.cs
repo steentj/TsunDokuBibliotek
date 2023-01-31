@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace TsundokuLibrary.ViewModel;
+namespace TsundokuBibliotek.ViewModel;
 
 public class StatusToColorConverter : IValueConverter
 {

@@ -2,7 +2,7 @@
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace TsunDokuBibliotek;
+namespace TsundokuBibliotek;
 
 class Program : MauiApplication
 {

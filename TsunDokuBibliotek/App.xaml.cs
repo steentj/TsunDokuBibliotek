@@ -1,4 +1,4 @@
-﻿namespace TsunDokuBibliotek;
+﻿namespace TsundokuBibliotek;
 
 public partial class App : Application
 {

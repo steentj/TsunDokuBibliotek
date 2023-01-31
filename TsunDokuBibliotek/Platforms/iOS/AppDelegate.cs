@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace TsunDokuBibliotek;
+namespace TsundokuBibliotek;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate
