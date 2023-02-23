@@ -16,12 +16,10 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-
         builder.Services.AddSingleton<BogRepository>();
         builder.Services.AddSingleton<BøgerViewModel>();
-
         builder.Services.AddSingleton<MainPage>();
-
+        builder.Services.AddSingleton<SettingsViewModel>();
         builder.Services.AddTransient<BogDetaljerViewModel>();
         builder.Services.AddTransient<BogDetaljer>();
 

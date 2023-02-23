@@ -7,6 +7,6 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         Routing.RegisterRoute(nameof(BogDetaljer), typeof(BogDetaljer));
+        Routing.RegisterRoute(nameof(Settings), typeof(Settings));
     }
 }
-

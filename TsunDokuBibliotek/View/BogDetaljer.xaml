@@ -37,9 +37,9 @@
                     HorizontalOptions="Center"
                     Margin="0,0,0,8"/>
             <VerticalStackLayout Grid.Row="2" Padding="10" Spacing="10">
-                <Label Style="{StaticResource MediumLabel}" Text="{Binding Bog.Forfatter}" />
-                <Label Style="{StaticResource SmallLabel}" Text="{Binding Bog.Format}" />
-                <Label Style="{StaticResource SmallLabel}" Text="{Binding Bog.Hvorfor}" />
+                <Label Style="{StaticResource LargeLabel}" Text="{Binding Bog.Forfatter}" />
+                <Label Style="{StaticResource MediumLabel}" Text="{Binding Bog.Format}" />
+                <Label Style="{StaticResource MediumLabel}" Text="{Binding Bog.Hvorfor}" />
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

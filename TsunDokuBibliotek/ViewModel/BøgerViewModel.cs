@@ -12,7 +12,7 @@ public partial class BøgerViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task GetBøgerASync()
+    public async Task GetBøgerASync()
     {
         if (IsBusy)
             return;
@@ -51,5 +51,11 @@ public partial class BøgerViewModel : BaseViewModel
         {
             { "Bog", bog}
         });
+    }
+
+    [RelayCommand]
+    async Task GoToSettings()
+    {
+        await Shell.Current.GoToAsync(nameof(Settings), true);
     }
 }

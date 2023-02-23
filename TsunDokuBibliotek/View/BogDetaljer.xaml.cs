@@ -1,5 +1,4 @@
-
-﻿namespace TsundokuBibliotek.View;
+namespace TsundokuBibliotek.View;
 
 public partial class BogDetaljer : ContentPage
 {

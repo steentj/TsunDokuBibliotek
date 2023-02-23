@@ -6,8 +6,6 @@
     xmlns:local="clr-namespace:TsundokuBibliotek.View"
     Shell.FlyoutBehavior="Disabled">
 
-
-
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
@@ -25,9 +23,7 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-
     <ShellContent
-        Title="Mit tsundoku bibliotek"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
