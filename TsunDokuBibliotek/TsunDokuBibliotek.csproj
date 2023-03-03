@@ -10,7 +10,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>TsunDoku Bibliotek</ApplicationTitle>
+		<ApplicationTitle>Tsundoku Bibliotek</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.tsundokubibliotek</ApplicationId>
@@ -44,8 +44,7 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 	<ItemGroup>
-	  <MauiXaml Update="View\NewPage1.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 	</ItemGroup>
 </Project>

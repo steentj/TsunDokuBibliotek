@@ -1,9 +1,9 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="TsunDokuBibliotek.WinUI.App"
+    x:Class="TsundokuBibliotek.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:TsunDokuBibliotek.WinUI">
+    xmlns:local="using:TsundokuBibliotek.WinUI">
 
 </maui:MauiWinUIApplication>
 

@@ -1,5 +1,4 @@
-﻿using System;
-namespace TsundokuBibliotek.ViewModel;
+﻿namespace TsundokuBibliotek.ViewModel;
 
 [QueryProperty(nameof(Bog), "Bog")]
 public partial class BogDetaljerViewModel : BaseViewModel
@@ -11,4 +10,3 @@ public partial class BogDetaljerViewModel : BaseViewModel
     [ObservableProperty]
     Bog bog;
 }
-

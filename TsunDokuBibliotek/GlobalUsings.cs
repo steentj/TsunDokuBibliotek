@@ -1,5 +1,6 @@
 ﻿global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
+global using CommunityToolkit.Maui;
 global using TsundokuBibliotek.Model;
 global using TsundokuBibliotek.ViewModel;
 global using TsundokuBibliotek.View;
