@@ -34,8 +34,7 @@
 		<!-- <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" /> -->
 
 		<!-- Images -->
-		<MauiImage Include="Resources\Images\*.svg" />
-		<MauiImage Include="Resources\Images\*.jpg" />
+		<MauiImage Include="Resources\Images\*.*g" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -83,9 +82,9 @@
 	  <BundleResource Include="Resources\Images\defaultbook.png" />
 	  <BundleResource Include="Resources\Images\book_outline.png" />
 	  <BundleResource Include="Resources\Images\book_outline.svg" />
+	  <BundleResource Include="Resources\Images\settings_outline.svg" />
+	  <BundleResource Include="Resources\Images\settings_outline.svg" />
 	  <BundleResource Include="Resources\Images\book_outline.svg" />
-	  <BundleResource Include="Resources\Images\settings_outline.svg" />
-	  <BundleResource Include="Resources\Images\settings_outline.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Resources\Images\" />
@@ -97,5 +96,7 @@
 	  <MauiImage Remove="Resources\Images\bulb_outline.png" />
 	  <MauiImage Remove="Resources\Images\defaultbook.png" />
 	  <MauiImage Remove="Resources\Images\book_outline.png" />
+	  <MauiImage Remove="Resources\Images\settings_outline.svg" />
+	  <MauiImage Remove="Resources\Images\book_outline.svg" />
 	</ItemGroup>
 </Project>

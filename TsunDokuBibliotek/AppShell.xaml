@@ -8,15 +8,6 @@
     x:Name="shell"
     FlyoutBackgroundColor="LightGrey">
 
-    <Shell.ItemTemplate>
-        <DataTemplate>
-            <Grid ColumnDefinitions="30,*" Padding="10">
-                <Image Source="{Binding Icon}" />
-                <Label Grid.Column="1" Text="{Binding Title}" TextColor="Black" FontAttributes="Bold" />
-            </Grid>
-        </DataTemplate>
-    </Shell.ItemTemplate>
-
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
@@ -34,7 +25,7 @@
             <Style x:Key="DomesticShell"
                    TargetType="Element"
                    BasedOn="{StaticResource BaseStyle}">
-                <Setter Property="Shell.BackgroundColor" Value="#039BE6" />
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
             </Style>
         </ResourceDictionary>
     </Shell.Resources>
@@ -82,14 +73,23 @@
     -->
     
 
+    <!--<Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="30,*" Padding="10">
+                <Image Source="{Binding Icon}" />
+                <Label Grid.Column="1" Text="{Binding Title}" TextColor="Black" FontAttributes="Bold" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>-->
+
     <Shell.FlyoutHeader>
-        <StackLayout Orientation="Horizontal" Spacing="20">
+        <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,0">
             <Label Text="Tsundoku"
-                   TextColor="Yellow"
+                   TextColor="{StaticResource Primary}"
                    FontAttributes="Bold"
                    HorizontalOptions="StartAndExpand" />
-            <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{dd. 0:MMMM, yyyy}'}"
-                   TextColor="Yellow"
+            <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:dd MMM yyyy}'}"
+                   TextColor="{StaticResource Primary}"
                    HorizontalOptions="End" />
         </StackLayout>
     </Shell.FlyoutHeader>
@@ -98,20 +98,20 @@
         <controls:FlyoutFooter />
     </Shell.FlyoutFooter>-->
 
-    <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems" >
+    <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
             Route="MainPage"
             Title="Bøger"
-            Icon="book_outline.png"
+            Icon="book_transparent.png"
             Style="{StaticResource DomesticShell}"
             ContentTemplate="{DataTemplate local:MainPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems" >
+    <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
             Route="Settings"
             Title="Opsætning"
-            Icon="settings_outline.png"
+            Icon="settings_transparent.png"
             Style="{StaticResource DomesticShell}"
             ContentTemplate="{DataTemplate local:Settings}" />
     </FlyoutItem>
