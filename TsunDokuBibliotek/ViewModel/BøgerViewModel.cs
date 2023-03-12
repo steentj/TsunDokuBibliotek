@@ -2,8 +2,21 @@
 
 public partial class BøgerViewModel : BaseViewModel
 {
-    public ObservableCollection<Bog> Bøger { get; } = new();
     BogRepository repository;
+    ObservableCollection<Bog> bøger = new();
+    public  ObservableCollection<Bog> Bøger
+    {
+        get
+            {
+            if (bøger is null || !bøger.Any())
+            {
+                var bøger = GetBøgerASync();
+            }
+
+            return bøger;
+        }
+
+    }
 
     public BøgerViewModel(BogRepository repository)
     {
@@ -20,14 +33,14 @@ public partial class BøgerViewModel : BaseViewModel
         try
         {
             IsBusy = true;
-            var bøger = await repository.GetBøgerAsync();
+            var bøgerTemp = await repository.GetBøgerAsync();
 
-            if (Bøger.Any())
-                Bøger.Clear();
+            if (bøger is null || bøger.Any())
+                bøger.Clear();
 
-            foreach (var bog in bøger)
+            foreach (var bog in bøgerTemp)
             {
-                Bøger.Add(bog);
+                bøger.Add(bog);
             }
         }
         catch (Exception ex)

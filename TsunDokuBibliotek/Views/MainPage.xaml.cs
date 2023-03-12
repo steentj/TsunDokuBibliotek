@@ -1,4 +1,4 @@
-﻿namespace TsundokuBibliotek.View;
+﻿namespace TsundokuBibliotek.Views;
 
 public partial class MainPage : ContentPage
 {
@@ -7,6 +7,6 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         BindingContext = viewModel;
 
-        viewModel.GetBøgerASync();
+        //viewModel.GetBøgerASync();
     }
 }

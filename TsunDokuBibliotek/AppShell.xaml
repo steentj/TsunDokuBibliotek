@@ -1,10 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="TsundokuBibliotek.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:TsundokuBibliotek.View"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:local="clr-namespace:TsundokuBibliotek.Views"
+    x:Class="TsundokuBibliotek.AppShell"
+    x:Name="shell"
+    FlyoutBackgroundColor="LightGrey">
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="30,*" Padding="10">
+                <Image Source="{Binding Icon}" />
+                <Label Grid.Column="1" Text="{Binding Title}" TextColor="Black" FontAttributes="Bold" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -19,13 +30,90 @@
                 <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Dark=#95FFFFFF, Light=#95000000}" />
                 <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Dark={StaticResource LightBackground}, Light={StaticResource DarkBackground}}" />
             </Style>
-            <Style BasedOn="{StaticResource BaseStyle}" TargetType="ShellItem" ApplyToDerivedTypes="True" />
+            <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
+            <Style x:Key="DomesticShell"
+                   TargetType="Element"
+                   BasedOn="{StaticResource BaseStyle}">
+                <Setter Property="Shell.BackgroundColor" Value="#039BE6" />
+            </Style>
         </ResourceDictionary>
     </Shell.Resources>
 
-    <ShellContent
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!--
+    ApplyToDerivedTypes="True"
+    <Shell.Resources>
+        <Style x:Key="BaseStyle" TargetType="Element">
+            <Setter Property="Shell.BackgroundColor" Value="#455A64" />
+            <Setter Property="Shell.ForegroundColor" Value="White" />
+            <Setter Property="Shell.TitleColor" Value="White" />
+            <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+            <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+        </Style>
+        <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
+        <Style x:Key="DomesticShell" TargetType="Element" BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor" Value="#039BE6" />
+        </Style>
+        <Style x:Key="MonkeysShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#689F39" />
+        </Style>
+        <Style x:Key="ElephantsShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#ED3B3B" />
+        </Style>
+        <Style x:Key="BearsShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#546DFE" />
+        </Style>
+        <Style x:Key="AboutShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#96d1ff" />
+        </Style>
+    </Shell.Resources>
 
+    -->
+    
+
+    <Shell.FlyoutHeader>
+        <StackLayout Orientation="Horizontal" Spacing="20">
+            <Label Text="Tsundoku"
+                   TextColor="Yellow"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+            <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{dd. 0:MMMM, yyyy}'}"
+                   TextColor="Yellow"
+                   HorizontalOptions="End" />
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
+    <!--<Shell.FlyoutFooter>
+        <controls:FlyoutFooter />
+    </Shell.FlyoutFooter>-->
+
+    <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems" >
+        <ShellContent
+            Route="MainPage"
+            Title="Bøger"
+            Icon="book_outline.png"
+            Style="{StaticResource DomesticShell}"
+            ContentTemplate="{DataTemplate local:MainPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems" >
+        <ShellContent
+            Route="Settings"
+            Title="Opsætning"
+            Icon="settings_outline.png"
+            Style="{StaticResource DomesticShell}"
+            ContentTemplate="{DataTemplate local:Settings}" />
+    </FlyoutItem>
 </Shell>
 

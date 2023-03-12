@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TsundokuBibliotek.View.MainPage"
+             x:Class="TsundokuBibliotek.Views.MainPage"
              xmlns:model="clr-namespace:TsundokuBibliotek.Model"
              xmlns:viewmodel="clr-namespace:TsundokuBibliotek.ViewModel"
              x:DataType="viewmodel:BøgerViewModel"
@@ -42,20 +42,10 @@
         ColumnSpacing="0"
         RowDefinitions="Auto,*,Auto"
         RowSpacing="0">
-        <Button Text="⚙️"
-                FontSize="28"
-                BackgroundColor="{StaticResource Primary}"
-                Grid.Row="0"
-                Grid.ColumnSpan="2"
-                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BøgerViewModel}}, Path=GoToSettingsCommand}"
-                Margin="0"
-                Padding="0"
-                HeightRequest="50"
-                HorizontalOptions="FillAndExpand"/>
 
         <CollectionView ItemsSource="{Binding Bøger}"
                         SelectionMode="None"
-                        Grid.Row="1"
+                        Grid.Row="0"
                         Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Bog">
@@ -92,7 +82,7 @@
         <Button Text="Indlæs bøger"
                 Command="{Binding GetBøgerASyncCommand}"
                 IsEnabled="{Binding IsNotBusy}"
-                Grid.Row="2"
+                Grid.Row="1"
                 Grid.Column="0"
                 Style="{StaticResource ButtonOutline}"
                 Margin="8" />
@@ -106,4 +96,3 @@
     </Grid>
  
 </ContentPage>
-

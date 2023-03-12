@@ -3,7 +3,7 @@ global using CommunityToolkit.Mvvm.Input;
 global using CommunityToolkit.Maui;
 global using TsundokuBibliotek.Model;
 global using TsundokuBibliotek.ViewModel;
-global using TsundokuBibliotek.View;
+global using TsundokuBibliotek.Views;
 global using TsundokuBibliotek.Repository;
 global using System;
 global using System.Collections.ObjectModel;

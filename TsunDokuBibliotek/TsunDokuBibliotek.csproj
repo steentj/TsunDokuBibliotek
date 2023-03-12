@@ -35,7 +35,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*.svg" />
-		<MauiImage Include="Resources\Images\*.png" />
 		<MauiImage Include="Resources\Images\*.jpg" />
 
 		<!-- Custom Fonts -->
@@ -47,5 +46,56 @@
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 	  <PackageReference Include="CommunityToolkit.Maui" Version="5.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Resources\Images\" />
+	  <None Remove="Resources\Images\book-outline.svg" />
+	  <None Remove="Resources\Images\school-outline.svg" />
+	  <None Remove="Resources\Images\settings-outline.svg" />
+	  <None Remove="Resources\Images\defaultbook.png" />
+	  <None Remove="Resources\Images\bulb-outline.png" />
+	  <None Remove="Resources\Images\info-outline.png" />
+	  <None Remove="Resources\Images\settings-2-outline.png" />
+	  <None Remove="Resources\Images\book-outline.png" />
+	  <None Remove="Resources\Images\settings_outline.png" />
+	  <None Remove="Resources\Images\info_outline.png" />
+	  <None Remove="Resources\Images\bulb_outline.png" />
+	  <None Remove="Resources\Images\book_outline.png" />
+	  <None Remove="Resources\Images\book_outline.svg" />
+	  <None Remove="Resources\Images\settings_outline.svg" />
+	  <None Remove="Controls\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\defaultbook.png">
+	    <LogicalName>defaultbook.png</LogicalName>
+	  </BundleResource>
+	  <BundleResource Include="Resources\Images\bulb_outline.png" />
+	  <BundleResource Include="Resources\Images\info_outline.png" />
+	  <BundleResource Include="Resources\Images\settings_outline.png" />
+	  <BundleResource Include="Resources\Images\book_outline.png" />
+	  <BundleResource Include="Resources\Images\settings_outline.png" />
+	  <BundleResource Include="Resources\Images\info_outline.png" />
+	  <BundleResource Include="Resources\Images\bulb_outline.png" />
+	  <BundleResource Include="Resources\Images\book_outline.png" />
+	  <BundleResource Include="Resources\Images\settings_outline.png" />
+	  <BundleResource Include="Resources\Images\info_outline.png" />
+	  <BundleResource Include="Resources\Images\bulb_outline.png" />
+	  <BundleResource Include="Resources\Images\defaultbook.png" />
+	  <BundleResource Include="Resources\Images\book_outline.png" />
+	  <BundleResource Include="Resources\Images\book_outline.svg" />
+	  <BundleResource Include="Resources\Images\book_outline.svg" />
+	  <BundleResource Include="Resources\Images\settings_outline.svg" />
+	  <BundleResource Include="Resources\Images\settings_outline.svg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Resources\Images\" />
+	  <Folder Include="Controls\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\settings_outline.png" />
+	  <MauiImage Remove="Resources\Images\info_outline.png" />
+	  <MauiImage Remove="Resources\Images\bulb_outline.png" />
+	  <MauiImage Remove="Resources\Images\defaultbook.png" />
+	  <MauiImage Remove="Resources\Images\book_outline.png" />
 	</ItemGroup>
 </Project>
