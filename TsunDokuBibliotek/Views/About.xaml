@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TsundokuBibliotek.Views.About"
+             Title="Om TsundokuBiblioteks appen">
+    <ScrollView>
+            <VerticalStackLayout Padding="10" Spacing="10">
+                <Label Style="{StaticResource MediumLabel}" Text="Denne app er udviklet som et hobby projekt.\nUdviklingsmiljø .Net MAUI" />
+                <Label Style="{StaticResource MediumLabel}" Text="Udviklet af Steen Thrane Jacobsen" />
+            </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -60,9 +60,11 @@
 	  <None Remove="Resources\Images\info_outline.png" />
 	  <None Remove="Resources\Images\bulb_outline.png" />
 	  <None Remove="Resources\Images\book_outline.png" />
-	  <None Remove="Resources\Images\book_outline.svg" />
-	  <None Remove="Resources\Images\settings_outline.svg" />
 	  <None Remove="Controls\" />
+	  <None Remove="Resources\Images\book_transparent.png" />
+	  <None Remove="Resources\Images\settings_transparent.png" />
+	  <None Remove="Resources\Images\info_transparent.png" />
+	  <None Remove="Resources\Images\bulb_transparent.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\defaultbook.png">
@@ -81,10 +83,14 @@
 	  <BundleResource Include="Resources\Images\bulb_outline.png" />
 	  <BundleResource Include="Resources\Images\defaultbook.png" />
 	  <BundleResource Include="Resources\Images\book_outline.png" />
-	  <BundleResource Include="Resources\Images\book_outline.svg" />
-	  <BundleResource Include="Resources\Images\settings_outline.svg" />
-	  <BundleResource Include="Resources\Images\settings_outline.svg" />
-	  <BundleResource Include="Resources\Images\book_outline.svg" />
+	  <BundleResource Include="Resources\Images\book_transparent.png" />
+	  <BundleResource Include="Resources\Images\book_transparent.png" />
+	  <BundleResource Include="Resources\Images\settings_transparent.png" />
+	  <BundleResource Include="Resources\Images\settings_transparent.png" />
+	  <BundleResource Include="Resources\Images\info_transparent.png" />
+	  <BundleResource Include="Resources\Images\info_transparent.png" />
+	  <BundleResource Include="Resources\Images\bulb_transparent.png" />
+	  <BundleResource Include="Resources\Images\bulb_transparent.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Resources\Images\" />
@@ -96,7 +102,5 @@
 	  <MauiImage Remove="Resources\Images\bulb_outline.png" />
 	  <MauiImage Remove="Resources\Images\defaultbook.png" />
 	  <MauiImage Remove="Resources\Images\book_outline.png" />
-	  <MauiImage Remove="Resources\Images\settings_outline.svg" />
-	  <MauiImage Remove="Resources\Images\book_outline.svg" />
 	</ItemGroup>
 </Project>

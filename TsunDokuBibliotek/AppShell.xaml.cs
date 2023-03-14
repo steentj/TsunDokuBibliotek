@@ -10,6 +10,7 @@ public partial class AppShell : Shell
 
         Routes.Add(nameof(BogDetaljer), typeof(BogDetaljer));
         Routes.Add(nameof(Settings), typeof(Settings));
+        Routes.Add(nameof(About), typeof(About));
         foreach (var item in Routes)
         {
             Routing.RegisterRoute(item.Key, item.Value);

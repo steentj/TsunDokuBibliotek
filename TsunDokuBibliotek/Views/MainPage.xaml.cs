@@ -6,7 +6,5 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         BindingContext = viewModel;
-
-        //viewModel.GetBøgerASync();
     }
 }

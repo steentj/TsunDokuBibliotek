@@ -20,6 +20,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<BogRepository>();
         builder.Services.AddSingleton<BøgerViewModel>();
         builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<About>();
         builder.Services.AddSingleton<SettingsViewModel>();
         builder.Services.AddTransient<BogDetaljerViewModel>();
         builder.Services.AddTransient<BogDetaljer>();
