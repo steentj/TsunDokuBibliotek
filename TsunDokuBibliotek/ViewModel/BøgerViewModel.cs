@@ -65,10 +65,4 @@ public partial class BøgerViewModel : BaseViewModel
             { "Bog", bog}
         });
     }
-
-    [RelayCommand]
-    async Task GoToSettings()
-    {
-        await Shell.Current.GoToAsync(nameof(Settings), true);
-    }
 }

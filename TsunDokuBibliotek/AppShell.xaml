@@ -117,11 +117,11 @@
 
     <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems" >
         <ShellContent
-            Route="Settings"
+            Route="TsundokuPreferences"
             Title="Opsætning"
             Icon="settings_transparent.png"
             Style="{StaticResource DomesticShell}"
-            ContentTemplate="{DataTemplate local:Settings}" />
+            ContentTemplate="{DataTemplate local:TsundokuPreferences}" />
     </FlyoutItem>
 
     <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems" IsEnabled="True">

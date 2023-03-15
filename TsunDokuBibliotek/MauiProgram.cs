@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui.Storage;
+using Microsoft.Extensions.Logging;
 
 namespace TsundokuBibliotek;
 public static class MauiProgram
@@ -20,10 +21,12 @@ public static class MauiProgram
         builder.Services.AddSingleton<BogRepository>();
         builder.Services.AddSingleton<BøgerViewModel>();
         builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<TsundokuPreferences>();
         builder.Services.AddSingleton<About>();
-        builder.Services.AddSingleton<SettingsViewModel>();
+        builder.Services.AddSingleton<TsundokuPreferencesViewModel>();
         builder.Services.AddTransient<BogDetaljerViewModel>();
         builder.Services.AddTransient<BogDetaljer>();
+        builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
         return builder.Build();
     }
 }

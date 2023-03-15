@@ -9,7 +9,7 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         Routes.Add(nameof(BogDetaljer), typeof(BogDetaljer));
-        Routes.Add(nameof(Settings), typeof(Settings));
+        Routes.Add(nameof(TsundokuPreferences), typeof(TsundokuPreferences));
         Routes.Add(nameof(About), typeof(About));
         foreach (var item in Routes)
         {
