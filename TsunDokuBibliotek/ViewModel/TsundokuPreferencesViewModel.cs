@@ -36,7 +36,6 @@ namespace TsundokuBibliotek.ViewModel
                 if (folderPickerResultat.IsSuccessful)
                 {
                     TsundokuSettings = new() { TsundokuFolder = folderPickerResultat.Folder.Path };
-                    //TsundokuSettings.TsundokuFolder = folderPickerResultat.Folder.ToString();
                 }
             }
             catch (Exception ex)

@@ -1,19 +1,17 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace TsundokuBibliotek.Model;
 
-namespace TsundokuBibliotek.Model;
-
-public class Bog
+[Table(Constants.BookTablename)]
+public class Bog : BaseTable
 {
-   public string BilledeLink { get; set; }
-   public string Forfatter { get; set; }
-   public string Titel { get; set; }
-   public string Synopsis { get; set; }
-   public string Hvorfor { get; set; }
-   public IEnumerable<string> Citater { get; set; }
-   [JsonConverter(typeof(JsonStringEnumConverter))]
-   public Status Status { get; set; }
-   [JsonConverter(typeof(JsonStringEnumConverter))]
-   public Format Format { get; set; }
+    public string Forfatter { get; set; }
+    public string Titel { get; set; }
+    public string BilledeLink { get; set; }
+    public string Synopsis { get; set; }
+    public string Hvorfor { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public Status Status { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public Format Format { get; set; }
 }
 
 public enum Status
@@ -26,6 +24,7 @@ public enum Status
 public enum Format
 {
    Papirbog,
-   Ebog
+   Ebog,
+   Lydbog
 }
 

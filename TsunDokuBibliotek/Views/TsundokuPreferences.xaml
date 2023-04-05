@@ -10,13 +10,14 @@
             Text ="Folder til data:"
             Style="{StaticResource LargeLabel}"
              />
-        <StackLayout Orientation="Vertical" Margin="20">
+        <StackLayout Orientation="Horizontal">
             <Label
                 Text ="{Binding TsundokuSettings.TsundokuFolder}"
-                Style="{StaticResource LargeLabel}"
+                Style="{StaticResource MediumLabel}"
+                MaximumWidthRequest="240"
                 HorizontalTextAlignment="Start"/>
             <Button Command="{Binding PickDataFolderASyncCommand}"
-                    Text="Vælg ny folder til data"
+                    Text="Vælg..."
                     Style="{StaticResource ButtonOutline}"
                     IsEnabled="{Binding IsNotBusy}"
                 HorizontalOptions="Center" />
