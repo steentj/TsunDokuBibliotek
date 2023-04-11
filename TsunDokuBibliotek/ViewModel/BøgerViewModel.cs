@@ -4,6 +4,7 @@ public partial class BøgerViewModel : BaseViewModel
 {
     BogRepository repository;
     ObservableCollection<Bog> bøger = new();
+
     public  ObservableCollection<Bog> Bøger
     {
         get
@@ -60,9 +61,9 @@ public partial class BøgerViewModel : BaseViewModel
         if (bog is null)
             return;
 
-        await Shell.Current.GoToAsync(nameof(BogDetaljer), true, new Dictionary<string, object>
+        await Shell.Current.GoToAsync(nameof(BogDetaljerView), true, new Dictionary<string, object>
         {
-            { "Bog", bog}
+            { "Id", bog.Id }
         });
     }
 }

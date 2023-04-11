@@ -30,58 +30,6 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <!--
-    ApplyToDerivedTypes="True"
-    <Shell.Resources>
-        <Style x:Key="BaseStyle" TargetType="Element">
-            <Setter Property="Shell.BackgroundColor" Value="#455A64" />
-            <Setter Property="Shell.ForegroundColor" Value="White" />
-            <Setter Property="Shell.TitleColor" Value="White" />
-            <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-            <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-        </Style>
-        <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
-        <Style x:Key="DomesticShell" TargetType="Element" BasedOn="{StaticResource BaseStyle}">
-            <Setter Property="Shell.BackgroundColor" Value="#039BE6" />
-        </Style>
-        <Style x:Key="MonkeysShell"
-               TargetType="Element"
-               BasedOn="{StaticResource BaseStyle}">
-            <Setter Property="Shell.BackgroundColor"
-                    Value="#689F39" />
-        </Style>
-        <Style x:Key="ElephantsShell"
-               TargetType="Element"
-               BasedOn="{StaticResource BaseStyle}">
-            <Setter Property="Shell.BackgroundColor"
-                    Value="#ED3B3B" />
-        </Style>
-        <Style x:Key="BearsShell"
-               TargetType="Element"
-               BasedOn="{StaticResource BaseStyle}">
-            <Setter Property="Shell.BackgroundColor"
-                    Value="#546DFE" />
-        </Style>
-        <Style x:Key="AboutShell"
-               TargetType="Element"
-               BasedOn="{StaticResource BaseStyle}">
-            <Setter Property="Shell.BackgroundColor"
-                    Value="#96d1ff" />
-        </Style>
-    </Shell.Resources>
-
-    -->
-    
-
-    <!--<Shell.ItemTemplate>
-        <DataTemplate>
-            <Grid ColumnDefinitions="30,*" Padding="10">
-                <Image Source="{Binding Icon}" />
-                <Label Grid.Column="1" Text="{Binding Title}" TextColor="Black" FontAttributes="Bold" />
-            </Grid>
-        </DataTemplate>
-    </Shell.ItemTemplate>-->
-
     <Shell.FlyoutHeader>
         <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,0">
             <Label Text="Tsundoku"
@@ -117,11 +65,11 @@
 
     <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems" >
         <ShellContent
-            Route="TsundokuPreferences"
+            Route="TsundokuPreferenceView"
             Title="Opsætning"
             Icon="settings_transparent.png"
             Style="{StaticResource DomesticShell}"
-            ContentTemplate="{DataTemplate local:TsundokuPreferences}" />
+            ContentTemplate="{DataTemplate local:TsundokuPreferenceView}" />
     </FlyoutItem>
 
     <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems" IsEnabled="True">
@@ -130,7 +78,7 @@
             Title="Om"
             Icon="info_transparent.png"
             Style="{StaticResource DomesticShell}"
-            ContentTemplate="{DataTemplate local:About}" />
+            ContentTemplate="{DataTemplate local:AboutView}" />
     </FlyoutItem>
 </Shell>
 

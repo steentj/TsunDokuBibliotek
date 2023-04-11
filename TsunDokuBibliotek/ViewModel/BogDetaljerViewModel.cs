@@ -1,12 +1,34 @@
 ﻿namespace TsundokuBibliotek.ViewModel;
 
-[QueryProperty(nameof(Bog), "Bog")]
+[QueryProperty("Id", "Id")]
 public partial class BogDetaljerViewModel : BaseViewModel
 {
-    public BogDetaljerViewModel()
+    BogRepository repository;
+    public BogDetaljerViewModel(BogRepository repository)
     {
+        this.repository = repository;
     }
 
+    [RelayCommand]
+    private async Task Initialize()
+    {
+        VistBog = await repository.GetBogAsync(Id);
+    }
+
+
     [ObservableProperty]
-    Bog bog;
+    private int id;
+
+    //public int Id
+    //{
+    //    get => Id;
+    //    set
+    //    {
+    //        Id = value;
+    //        Bog = repository.GetBogAsync(Id).Result;
+    //    }
+    //}
+
+    [ObservableProperty]
+    Bog vistBog;
 }

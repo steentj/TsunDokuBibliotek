@@ -21,11 +21,11 @@ public static class MauiProgram
         builder.Services.AddSingleton<BogRepository>();
         builder.Services.AddSingleton<BøgerViewModel>();
         builder.Services.AddSingleton<MainPage>();
-        builder.Services.AddSingleton<TsundokuPreferences>();
-        builder.Services.AddSingleton<About>();
+        builder.Services.AddSingleton<TsundokuPreferenceView>();
+        builder.Services.AddSingleton<AboutView>();
         builder.Services.AddSingleton<TsundokuPreferencesViewModel>();
         builder.Services.AddTransient<BogDetaljerViewModel>();
-        builder.Services.AddTransient<BogDetaljer>();
+        builder.Services.AddTransient<BogDetaljerView>();
         builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
         return builder.Build();
     }

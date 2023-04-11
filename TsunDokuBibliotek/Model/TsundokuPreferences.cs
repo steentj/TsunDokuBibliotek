@@ -1,7 +1,7 @@
 ﻿using System;
 namespace TsundokuBibliotek.Model;
 
-public class TsundokuSettings
+public class TsundokuPreferences
 {
     public string TsundokuFolder { get; set; }
 }

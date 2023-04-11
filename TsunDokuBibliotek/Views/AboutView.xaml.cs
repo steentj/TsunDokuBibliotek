@@ -1,8 +1,8 @@
 ﻿namespace TsundokuBibliotek.Views;
 
-public partial class About : ContentPage
+public partial class AboutView : ContentPage
 {
-	public About()
+	public AboutView()
 	{
 		InitializeComponent();
 	}

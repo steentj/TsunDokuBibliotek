@@ -8,9 +8,9 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        Routes.Add(nameof(BogDetaljer), typeof(BogDetaljer));
-        Routes.Add(nameof(TsundokuPreferences), typeof(TsundokuPreferences));
-        Routes.Add(nameof(About), typeof(About));
+        Routes.Add(nameof(BogDetaljerView), typeof(BogDetaljerView));
+        Routes.Add(nameof(TsundokuPreferenceView), typeof(TsundokuPreferenceView));
+        Routes.Add(nameof(AboutView), typeof(AboutView));
         foreach (var item in Routes)
         {
             Routing.RegisterRoute(item.Key, item.Value);

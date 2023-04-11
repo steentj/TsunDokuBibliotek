@@ -2,6 +2,7 @@
 
 public class BogRepository
 {
+    //TODO Skal bruge path fra Settings
     private string dbPath = Path.Combine(FileSystem.AppDataDirectory, Constants.LocalDbFile);
     private SQLiteAsyncConnection cn;
 
@@ -118,6 +119,15 @@ public class BogRepository
         bøger = await cn.Table<Bog>().ToListAsync();
 
         return bøger;
+    }
+
+    public async Task<Bog> GetBogAsync(int id) 
+    {
+        await Init();
+
+        var query = cn.Table<Bog>().Where(b => b.Id == id);
+        var bog = await query.FirstOrDefaultAsync();
+        return bog;
     }
 
     private async Task<IEnumerable<Bog>> GetBøgerJsonAsync() 
