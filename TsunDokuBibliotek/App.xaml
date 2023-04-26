@@ -64,6 +64,15 @@
                 <Setter Property="CornerRadius" Value="10"/>
                 <Setter Property="IsClippedToBounds" Value="True"/>
             </Style>
+            <Style x:Key="RequiredEntry" TargetType="Entry">
+                <!--<Setter Property="BackgroundColor'" Value="Grey"/>-->
+                <Setter Property="Margin" Value="10"/>
+                <Style.Triggers>
+                    <Trigger TargetType="Entry" Property="Text" Value="">
+                        <Setter Property="BackgroundColor" Value="LightPink"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

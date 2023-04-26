@@ -29,18 +29,85 @@
                         WidthRequest="160"/>
             </Border>
 
-            <Label Style="{StaticResource LargeLabel}" 
-                    Grid.Row="1"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    Text="{Binding VistBog.Titel}" 
-                    HorizontalOptions="Center"
-                    Margin="0,0,0,8"/>
+            <HorizontalStackLayout Grid.Row="1" Padding="10" Spacing="10">
+                <Label Style="{StaticResource LargeLabel}" 
+                        Grid.Row="1"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        Text="{Binding VistBog.Titel}" 
+                        HorizontalOptions="Center"
+                        Margin="0,0,0,8"
+                        IsVisible="{Binding IsNotEdit}"/>
+                <Entry Style="{StaticResource RequiredEntry}" 
+                        Grid.Row="1"
+                        TextColor="Black"                        
+                        FontAttributes="Bold"
+                        Text="{Binding EditBog.Titel, Mode=TwoWay}"
+                        Placeholder="Titel"
+                        ClearButtonVisibility="WhileEditing"
+                        HorizontalOptions="Center"
+                        Margin="0,0,0,8"
+                        IsVisible="{Binding IsEdit}"/>
+
+                <Button Text="Rediger"
+                        Command="{Binding EditBookCommand}"
+                        IsEnabled="{Binding IsNotEdit}"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{StaticResource ButtonOutline}"
+                        Margin="8"
+                        HorizontalOptions="End" />
+
+                <Button Text="Slet..."
+                        Command="{Binding DeleteBookCommand}"
+                        IsEnabled="{Binding IsNotEdit}"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{StaticResource ButtonOutline}"
+                        Margin="8"
+                        HorizontalOptions="End" />
+            </HorizontalStackLayout>
             <VerticalStackLayout Grid.Row="2" Padding="10" Spacing="10">
-                <Label Style="{StaticResource LargeLabel}" Text="{Binding VistBog.Forfatter}" />
-                <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Synopsis}" />
-                <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Hvorfor}" />
+                <Label Style="{StaticResource LargeLabel}" Text="{Binding VistBog.Forfatter}" IsVisible="{Binding IsNotEdit}" />
+                <Entry Style="{StaticResource LargeLabel}"
+                       Text="{Binding EditBog.Forfatter, Mode=TwoWay}"
+                       Placeholder="Forfatter"
+                       ClearButtonVisibility="WhileEditing"
+                       IsVisible="{Binding IsEdit}" />
+                <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Synopsis}" IsVisible="{Binding IsNotEdit}" />
+                <Entry Style="{StaticResource MediumLabel}"
+                       Text="{Binding EditBog.Synopsis, Mode=TwoWay}"
+                       Placeholder="Synopsis"
+                       ClearButtonVisibility="WhileEditing"
+                       IsVisible="{Binding IsEdit}" />
+                <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Hvorfor}" IsVisible="{Binding IsNotEdit}" />
+                <Entry  Style="{StaticResource MediumLabel}"
+                        Text="{Binding EditBog.Hvorfor, Mode=TwoWay}"
+                        Placeholder="Hvorfor"
+                        ClearButtonVisibility="WhileEditing"
+                        IsVisible="{Binding IsEdit}" />
                 <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Status}" />
+
+                <HorizontalStackLayout Grid.Row="1" Padding="10" Spacing="10">
+                    <Button Text="Gem"
+                            Command="{Binding SaveBookCommand}"
+                            IsVisible="{Binding IsEdit}"
+                            IsEnabled="{Binding IsEdit}"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource ButtonOutline}"
+                            Margin="8"
+                            HorizontalOptions="Center" />
+                    <Button Text="Fortryd"
+                            Command="{Binding CancelEditCommand}"
+                            IsVisible="{Binding IsEdit}"
+                            IsEnabled="{Binding IsEdit}"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource ButtonOutline}"
+                            Margin="8"
+                            HorizontalOptions="End" />
+                </HorizontalStackLayout>
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

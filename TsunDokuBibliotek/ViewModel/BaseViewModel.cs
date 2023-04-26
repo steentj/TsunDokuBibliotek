@@ -5,8 +5,15 @@ public partial class BaseViewModel : ObservableObject
    [ObservableProperty]
    [NotifyPropertyChangedFor(nameof(IsNotBusy))]
    bool isBusy;
-   [ObservableProperty]
-   string title;
 
    public bool IsNotBusy => !IsBusy;
+
+   [ObservableProperty]
+   [NotifyPropertyChangedFor(nameof(IsNotEdit))]
+   bool isEdit;
+
+   public bool IsNotEdit => !IsEdit;
+
+   [ObservableProperty]
+   string title;
 }

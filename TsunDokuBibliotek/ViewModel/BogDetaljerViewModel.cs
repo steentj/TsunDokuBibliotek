@@ -9,26 +9,88 @@ public partial class BogDetaljerViewModel : BaseViewModel
         this.repository = repository;
     }
 
+    [ObservableProperty]
+    private int id;
+
+    [ObservableProperty]
+    Bog vistBog;
+
+    [ObservableProperty]
+    Bog editBog;
+
     [RelayCommand]
     private async Task Initialize()
     {
         VistBog = await repository.GetBogAsync(Id);
+        if (Id != -1)
+        {
+            EditBog = new Bog();
+            EditBog.Id = VistBog.Id;
+            EditBog.Titel = VistBog.Titel;
+            EditBog.Forfatter = VistBog.Forfatter;
+            EditBog.Format = VistBog.Format;
+            EditBog.Status = VistBog.Status;
+            EditBog.Synopsis = VistBog.Synopsis;
+            EditBog.Hvorfor = VistBog.Hvorfor;
+            EditBog.BilledeLink = VistBog.BilledeLink;
+            OnPropertyChanged(nameof(EditBog));
+        }
     }
 
+    [RelayCommand]
+    public void EditBook()
+    {
+        IsEdit = true;
+    }
 
-    [ObservableProperty]
-    private int id;
+    [RelayCommand]
+    private async Task SaveBook()
+    {
+        if (IsBusy)
+            return;
 
-    //public int Id
-    //{
-    //    get => Id;
-    //    set
-    //    {
-    //        Id = value;
-    //        Bog = repository.GetBogAsync(Id).Result;
-    //    }
-    //}
+        try
+        {
+            IsBusy = true;
 
-    [ObservableProperty]
-    Bog vistBog;
+            var op = await repository.SaveBookAsync(EditBog);
+
+            if (op)
+                await Shell.Current.Navigation.PopAsync();
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    [RelayCommand]
+    private async Task DeleteBook()
+    {
+        IsBusy = true;
+        var confirm = await Shell.Current.DisplayAlert("Bekræft", "Er du sikker på du vil slette denne bog?", "Ja", "Nej");
+
+        try
+        {
+            if (confirm)
+            {
+                await repository.DeleteBookAsync(VistBog);
+                await Shell.Current.Navigation.PopAsync();
+            }
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    [RelayCommand]
+    public void CancelEdit()
+    {
+        IsEdit = false;
+    }
 }

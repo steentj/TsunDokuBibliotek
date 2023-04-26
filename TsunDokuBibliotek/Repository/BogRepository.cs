@@ -1,6 +1,6 @@
 ﻿namespace TsundokuBibliotek.Repository;
 
-public class BogRepository
+public partial class BogRepository
 {
     //TODO Skal bruge path fra Settings
     private string dbPath = Path.Combine(FileSystem.AppDataDirectory, Constants.LocalDbFile);
@@ -121,13 +121,59 @@ public class BogRepository
         return bøger;
     }
 
-    public async Task<Bog> GetBogAsync(int id) 
+    public async Task<Bog> GetBogAsync(int? id) 
     {
+        //TODO Skal nok kaste en exception
+        if (id is null)
+            return null;
+
         await Init();
 
         var query = cn.Table<Bog>().Where(b => b.Id == id);
         var bog = await query.FirstOrDefaultAsync();
         return bog;
+    }
+
+    public async Task<bool> SaveBookAsync(Bog bog)
+    {
+        var result = 0;
+
+        //TODO Skal nok kaste en exception
+        if (bog is null)
+            return false;
+
+        if (bog.Id > 0)
+        {
+            result = await cn.UpdateAsync(bog);
+            //result = await ExecuteQuery($"UPDATE {Constants.BookTablename} SET " +
+            //    $"Forfatter = '{bog.Forfatter}', " +
+            //    $"Titel = '{bog.Titel}', " +
+            //    $"Synopsis = '{bog.Synopsis}', " +
+            //    $"Hvorfor = '{bog.Hvorfor}', " +
+            //    $"Status = '{bog.Status}', " +
+            //    $"BilledeLink = '{bog.BilledeLink}', " +
+            //    $"Format = '{bog.Format}' " +
+            //    $"WHERE Id = {bog.Id}");
+            var index = bøger.FindIndex(b => b.Id == bog.Id);
+            bøger.RemoveAt(index);
+        }
+        else
+        {
+            result = await cn.InsertAsync(bog);
+            //result = await ExecuteQuery($"INSERT INTO {Constants.BookTablename} " +
+            //    $"(Forfatter, Titel, Synopsis, Hvorfor, Status, BilleLink, Format) " +
+            //    $"Forfatter = '{bog.Forfatter}', " +
+            //    $"Forfatter = '{bog.Titel}', " +
+            //    $"Forfatter = '{bog.Synopsis}', " +
+            //    $"Forfatter = '{bog.Hvorfor}', " +
+            //    $"Forfatter = '{bog.Status}', " +
+            //    $"Forfatter = '{bog.BilledeLink}', " +
+            //    $"Forfatter = '{bog.Format}' " );
+        }
+
+        bøger.Add(bog);
+
+        return result != 0;
     }
 
     private async Task<IEnumerable<Bog>> GetBøgerJsonAsync() 
@@ -143,6 +189,25 @@ public class BogRepository
 
         await Init();
         return bøger;
+    }
+
+    [RelayCommand]
+    public async Task DeleteBookAsync(Bog bog)
+    {
+        await Init();
+        var result = await cn.DeleteAsync(bog);
+
+        if (result == 1)
+        {
+            await Shell.Current.DisplayAlert("Resultat", $"{bog.Titel} blev slettet", "OK");
+
+            var index = bøger.FindIndex(b => b.Id == bog.Id);
+            bøger.RemoveAt(index);
+        }
+        else
+        {
+            await Shell.Current.DisplayAlert("Resultat", "Fejl, prøv igen senere", "OK");
+        }
     }
 }
 
