@@ -18,6 +18,8 @@ public partial class BogDetaljerViewModel : BaseViewModel
     [ObservableProperty]
     Bog editBog;
 
+    bool saveable => ValidateTitel() && IsEdit;
+
     [RelayCommand]
     private async Task Initialize()
     {
@@ -93,4 +95,6 @@ public partial class BogDetaljerViewModel : BaseViewModel
     {
         IsEdit = false;
     }
+
+    public bool ValidateTitel() => !string.IsNullOrEmpty(EditBog.Titel.Trim());
 }

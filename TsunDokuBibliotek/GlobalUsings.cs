@@ -5,7 +5,7 @@ global using CommunityToolkit.Maui.Core;
 global using CommunityToolkit.Maui.Storage;
 global using TsundokuBibliotek.Model;
 global using TsundokuBibliotek.ViewModel;
-global using TsundokuBibliotek.Views;
+global using TsundokuBibliotek.View;
 global using TsundokuBibliotek.Repository;
 global using TsundokuBibliotek.Helpers;
 

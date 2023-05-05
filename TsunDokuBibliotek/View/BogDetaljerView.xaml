@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TsundokuBibliotek.Views.BogDetaljerView"
+             x:Class="TsundokuBibliotek.View.BogDetaljerView"
              xmlns:viewModel="clr-namespace:TsundokuBibliotek.ViewModel"
              x:DataType="viewModel:BogDetaljerViewModel"
              Title="{Binding VistBog.Titel}">
@@ -36,7 +36,7 @@
                         FontAttributes="Bold"
                         Text="{Binding VistBog.Titel}" 
                         HorizontalOptions="Center"
-                        Margin="0,0,0,8"
+                        Margin="0,13,0,8"
                         IsVisible="{Binding IsNotEdit}"/>
                 <Entry Style="{StaticResource RequiredEntry}" 
                         Grid.Row="1"
@@ -49,7 +49,7 @@
                         Margin="0,0,0,8"
                         IsVisible="{Binding IsEdit}"/>
 
-                <Button Text="Rediger"
+                <Button Text="🖋️"
                         Command="{Binding EditBookCommand}"
                         IsEnabled="{Binding IsNotEdit}"
                         Grid.Row="1"
@@ -58,7 +58,7 @@
                         Margin="8"
                         HorizontalOptions="End" />
 
-                <Button Text="Slet..."
+                <Button Text="🗑️"
                         Command="{Binding DeleteBookCommand}"
                         IsEnabled="{Binding IsNotEdit}"
                         Grid.Row="1"
