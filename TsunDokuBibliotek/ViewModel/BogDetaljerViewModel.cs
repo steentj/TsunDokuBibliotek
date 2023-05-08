@@ -1,4 +1,6 @@
-﻿namespace TsundokuBibliotek.ViewModel;
+﻿using TsundokuBibliotek.Model;
+
+namespace TsundokuBibliotek.ViewModel;
 
 [QueryProperty("Id", "Id")]
 public partial class BogDetaljerViewModel : BaseViewModel
@@ -18,7 +20,9 @@ public partial class BogDetaljerViewModel : BaseViewModel
     [ObservableProperty]
     Bog editBog;
 
-    bool saveable => ValidateTitel() && IsEdit;
+    public bool Saveable => ValidateTitel() && IsEdit;
+    public string[] Stati => Enum.GetNames(typeof(Status));
+    public string[] Formats => Enum.GetNames(typeof(Format));
 
     [RelayCommand]
     private async Task Initialize()
@@ -96,5 +100,5 @@ public partial class BogDetaljerViewModel : BaseViewModel
         IsEdit = false;
     }
 
-    public bool ValidateTitel() => !string.IsNullOrEmpty(EditBog.Titel.Trim());
+    public bool ValidateTitel() => !string.IsNullOrEmpty(EditBog?.Titel.Trim());
 }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TsundokuBibliotek.View.BogDetaljerView"
              xmlns:viewModel="clr-namespace:TsundokuBibliotek.ViewModel"
+             xmlns:model="clr-namespace:TsundokuBibliotek.Model"
              x:DataType="viewModel:BogDetaljerViewModel"
              Title="{Binding VistBog.Titel}">
     <ScrollView>
@@ -75,24 +76,38 @@
                        ClearButtonVisibility="WhileEditing"
                        IsVisible="{Binding IsEdit}" />
                 <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Synopsis}" IsVisible="{Binding IsNotEdit}" />
-                <Entry Style="{StaticResource MediumLabel}"
+                <Editor Style="{StaticResource MediumLabel}"
                        Text="{Binding EditBog.Synopsis, Mode=TwoWay}"
                        Placeholder="Synopsis"
-                       ClearButtonVisibility="WhileEditing"
+                       AutoSize="TextChanges"
                        IsVisible="{Binding IsEdit}" />
                 <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Hvorfor}" IsVisible="{Binding IsNotEdit}" />
-                <Entry  Style="{StaticResource MediumLabel}"
+                <Editor  Style="{StaticResource MediumLabel}"
                         Text="{Binding EditBog.Hvorfor, Mode=TwoWay}"
                         Placeholder="Hvorfor"
-                        ClearButtonVisibility="WhileEditing"
+                        AutoSize="TextChanges"
                         IsVisible="{Binding IsEdit}" />
-                <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Status}" />
+                <HorizontalStackLayout Spacing="10">
+                    <Label Style="{StaticResource MediumLabel}" Text="Status:" IsVisible="{Binding IsNotEdit}" />
+                    <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Status}" Margin="0,0,30,0" IsVisible="{Binding IsNotEdit}" />
+                    <Picker Title="Status:" 
+                            ItemsSource="{Binding Stati, Converter={StaticResource EnumToListConverter}}" 
+                            SelectedItem="{Binding EditBog.Status}" 
+                            Margin="0,0,30,0"
+                            IsVisible="{Binding IsEdit}" />
+                    <Label Style="{StaticResource MediumLabel}" Text="Format:" IsVisible="{Binding IsNotEdit}" />
+                    <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Format}" IsVisible="{Binding IsNotEdit}" />
+                    <Picker Title="Format:" 
+                            ItemsSource="{Binding Formats, Converter={StaticResource EnumToListConverter}}" 
+                            SelectedItem="{Binding EditBog.Format}" 
+                            IsVisible="{Binding IsEdit}" />
+                </HorizontalStackLayout>
 
-                <HorizontalStackLayout Grid.Row="1" Padding="10" Spacing="10">
+                <HorizontalStackLayout Padding="10" Spacing="10">
                     <Button Text="Gem"
                             Command="{Binding SaveBookCommand}"
                             IsVisible="{Binding IsEdit}"
-                            IsEnabled="{Binding IsEdit}"
+                            IsEnabled="{Binding Saveable}"
                             Grid.Row="1"
                             Grid.Column="0"
                             Style="{StaticResource ButtonOutline}"

@@ -22,7 +22,7 @@
                    TextColor="White"
                    FontSize="Large"
                    WidthRequest="350"
-                   HeightRequest="50"
+                      HeightRequest="50"
                    Margin="1"
                    Padding="1"
                    HorizontalOptions="Start"/>
