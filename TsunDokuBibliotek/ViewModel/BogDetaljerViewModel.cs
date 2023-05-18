@@ -1,4 +1,5 @@
 ﻿using TsundokuBibliotek.Model;
+using System.Collections;
 
 namespace TsundokuBibliotek.ViewModel;
 
@@ -20,9 +21,8 @@ public partial class BogDetaljerViewModel : BaseViewModel
     [ObservableProperty]
     Bog editBog;
 
-    public bool Saveable => ValidateTitel() && IsEdit;
-    public string[] Stati => Enum.GetNames(typeof(Status));
-    public string[] Formats => Enum.GetNames(typeof(Format));
+    [ObservableProperty]
+    bool isValid;
 
     [RelayCommand]
     private async Task Initialize()
@@ -31,16 +31,23 @@ public partial class BogDetaljerViewModel : BaseViewModel
         if (Id != -1)
         {
             EditBog = new Bog();
-            EditBog.Id = VistBog.Id;
-            EditBog.Titel = VistBog.Titel;
-            EditBog.Forfatter = VistBog.Forfatter;
-            EditBog.Format = VistBog.Format;
-            EditBog.Status = VistBog.Status;
-            EditBog.Synopsis = VistBog.Synopsis;
-            EditBog.Hvorfor = VistBog.Hvorfor;
-            EditBog.BilledeLink = VistBog.BilledeLink;
-            OnPropertyChanged(nameof(EditBog));
+            CopyBookDetailsToEditBook();
         }
+
+
+    }
+
+    private void CopyBookDetailsToEditBook()
+    {
+        EditBog.Id = VistBog.Id;
+        EditBog.Titel = VistBog.Titel;
+        EditBog.Forfatter = VistBog.Forfatter;
+        EditBog.Format = VistBog.Format;
+        EditBog.Status = VistBog.Status;
+        EditBog.Synopsis = VistBog.Synopsis;
+        EditBog.Hvorfor = VistBog.Hvorfor;
+        EditBog.BilledeLink = VistBog.BilledeLink;
+        OnPropertyChanged(nameof(EditBog));
     }
 
     [RelayCommand]
@@ -98,7 +105,12 @@ public partial class BogDetaljerViewModel : BaseViewModel
     public void CancelEdit()
     {
         IsEdit = false;
+        CopyBookDetailsToEditBook();
     }
 
-    public bool ValidateTitel() => !string.IsNullOrEmpty(EditBog?.Titel.Trim());
+    [RelayCommand]
+    public void Validate()
+    {            
+        IsValid = !IsEdit || !string.IsNullOrEmpty(EditBog?.Titel.Trim());
+    }
 }

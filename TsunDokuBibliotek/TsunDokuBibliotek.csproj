@@ -51,4 +51,10 @@
 	  <PackageReference Include="SQLitePCLRaw.provider.sqlite3" Version="2.1.4" />
 	  <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.4" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Control\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Control\" />
+	</ItemGroup>
 </Project>

@@ -36,10 +36,13 @@ public partial class BøgerViewModel : BaseViewModel
             IsBusy = true;
             var bøgerTemp = await repository.GetBøgerAsync();
 
-            if (bøger is null || bøger.Any())
+            if (bøger is null)
+                bøger = new ObservableCollection<Bog>();
+
+            if (bøger.Any())
                 bøger.Clear();
 
-            foreach (var bog in bøgerTemp)
+            foreach (var bog in bøgerTemp.OrderBy(b => b.Id))
             {
                 bøger.Add(bog);
             }

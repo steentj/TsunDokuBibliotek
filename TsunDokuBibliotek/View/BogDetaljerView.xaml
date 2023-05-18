@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TsundokuBibliotek.View.BogDetaljerView"
              xmlns:viewModel="clr-namespace:TsundokuBibliotek.ViewModel"
-             xmlns:model="clr-namespace:TsundokuBibliotek.Model"
+             xmlns:controls="clr-namespace:TsundokuBibliotek.Control"
+             xmlns:model="clr-namespace:TsundokuBibliotek.Model" xmlns:layouts="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="viewModel:BogDetaljerViewModel"
              Title="{Binding VistBog.Titel}">
     <ScrollView>
@@ -31,7 +32,7 @@
             </Border>
 
             <HorizontalStackLayout Grid.Row="1" Padding="10" Spacing="10">
-                <Label Style="{StaticResource LargeLabel}" 
+                <Label Style="{StaticResource BoldLargeLabel}" 
                         Grid.Row="1"
                         TextColor="White"
                         FontAttributes="Bold"
@@ -39,16 +40,37 @@
                         HorizontalOptions="Center"
                         Margin="0,13,0,8"
                         IsVisible="{Binding IsNotEdit}"/>
-                <Entry Style="{StaticResource RequiredEntry}" 
+                <Entry Style="{StaticResource BoldLargeLabel}" 
                         Grid.Row="1"
-                        TextColor="Black"                        
+                        TextColor="Black"
+                        BackgroundColor="White"
                         FontAttributes="Bold"
                         Text="{Binding EditBog.Titel, Mode=TwoWay}"
                         Placeholder="Titel"
                         ClearButtonVisibility="WhileEditing"
                         HorizontalOptions="Center"
                         Margin="0,0,0,8"
-                        IsVisible="{Binding IsEdit}"/>
+                        IsVisible="{Binding IsEdit}">
+                    <Entry.Behaviors>
+                        <layouts:EventToCommandBehavior
+                            EventName="TextChanged"
+                            Command="{Binding ValidateCommand}" />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger 
+                            TargetType="Entry"
+                            Binding="{Binding IsValid}"
+                            Value="False">
+                            <Setter Property="BackgroundColor" Value="{StaticResource ErrorColor}" />
+                        </DataTrigger>
+                        <DataTrigger 
+                            TargetType="Entry"
+                            Binding="{Binding IsValid}"
+                            Value="True">
+                            <Setter Property="BackgroundColor" Value="White" />
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
 
                 <Button Text="🖋️"
                         Command="{Binding EditBookCommand}"
@@ -69,8 +91,8 @@
                         HorizontalOptions="End" />
             </HorizontalStackLayout>
             <VerticalStackLayout Grid.Row="2" Padding="10" Spacing="10">
-                <Label Style="{StaticResource LargeLabel}" Text="{Binding VistBog.Forfatter}" IsVisible="{Binding IsNotEdit}" />
-                <Entry Style="{StaticResource LargeLabel}"
+                <Label Style="{StaticResource BoldLargeLabel}" Text="{Binding VistBog.Forfatter}" IsVisible="{Binding IsNotEdit}" />
+                <Entry Style="{StaticResource BoldLargeLabel}"
                        Text="{Binding EditBog.Forfatter, Mode=TwoWay}"
                        Placeholder="Forfatter"
                        ClearButtonVisibility="WhileEditing"
@@ -81,7 +103,11 @@
                        Placeholder="Synopsis"
                        AutoSize="TextChanges"
                        IsVisible="{Binding IsEdit}" />
-                <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Hvorfor}" IsVisible="{Binding IsNotEdit}" />
+                <Label Style="{StaticResource BoldMediumLabel}"
+                       Text="Hvorfor købte jeg denne bog" />
+                <Label Style="{StaticResource MediumLabel}"
+                       Text="{Binding VistBog.Hvorfor}"
+                       IsVisible="{Binding IsNotEdit}" />
                 <Editor  Style="{StaticResource MediumLabel}"
                         Text="{Binding EditBog.Hvorfor, Mode=TwoWay}"
                         Placeholder="Hvorfor"
@@ -90,16 +116,16 @@
                 <HorizontalStackLayout Spacing="10">
                     <Label Style="{StaticResource MediumLabel}" Text="Status:" IsVisible="{Binding IsNotEdit}" />
                     <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Status}" Margin="0,0,30,0" IsVisible="{Binding IsNotEdit}" />
-                    <Picker Title="Status:" 
-                            ItemsSource="{Binding Stati, Converter={StaticResource EnumToListConverter}}" 
-                            SelectedItem="{Binding EditBog.Status}" 
+                    <controls:EnumPicker Title="Status:" 
+                            EnumType="{x:Type model:Status}"
+                            SelectedItem="{Binding EditBog.Status}"
                             Margin="0,0,30,0"
                             IsVisible="{Binding IsEdit}" />
                     <Label Style="{StaticResource MediumLabel}" Text="Format:" IsVisible="{Binding IsNotEdit}" />
                     <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Format}" IsVisible="{Binding IsNotEdit}" />
-                    <Picker Title="Format:" 
-                            ItemsSource="{Binding Formats, Converter={StaticResource EnumToListConverter}}" 
-                            SelectedItem="{Binding EditBog.Format}" 
+                    <controls:EnumPicker Title="Format:" 
+                            EnumType="{x:Type model:Format}"
+                            SelectedItem="{Binding EditBog.Format}"
                             IsVisible="{Binding IsEdit}" />
                 </HorizontalStackLayout>
 
@@ -107,18 +133,14 @@
                     <Button Text="Gem"
                             Command="{Binding SaveBookCommand}"
                             IsVisible="{Binding IsEdit}"
-                            IsEnabled="{Binding Saveable}"
-                            Grid.Row="1"
-                            Grid.Column="0"
+                            IsEnabled="{Binding IsValid}"
                             Style="{StaticResource ButtonOutline}"
                             Margin="8"
-                            HorizontalOptions="Center" />
+                            HorizontalOptions="Center" />  
                     <Button Text="Fortryd"
                             Command="{Binding CancelEditCommand}"
                             IsVisible="{Binding IsEdit}"
                             IsEnabled="{Binding IsEdit}"
-                            Grid.Row="1"
-                            Grid.Column="0"
                             Style="{StaticResource ButtonOutline}"
                             Margin="8"
                             HorizontalOptions="End" />
