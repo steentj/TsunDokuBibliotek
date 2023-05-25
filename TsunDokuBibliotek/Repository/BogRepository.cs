@@ -145,30 +145,12 @@ public partial class BogRepository
         if (bog.Id > 0)
         {
             result = await cn.UpdateAsync(bog);
-            //result = await ExecuteQuery($"UPDATE {Constants.BookTablename} SET " +
-            //    $"Forfatter = '{bog.Forfatter}', " +
-            //    $"Titel = '{bog.Titel}', " +
-            //    $"Synopsis = '{bog.Synopsis}', " +
-            //    $"Hvorfor = '{bog.Hvorfor}', " +
-            //    $"Status = '{bog.Status}', " +
-            //    $"BilledeLink = '{bog.BilledeLink}', " +
-            //    $"Format = '{bog.Format}' " +
-            //    $"WHERE Id = {bog.Id}");
             var index = bøger.FindIndex(b => b.Id == bog.Id);
             bøger.RemoveAt(index);
         }
         else
         {
             result = await cn.InsertAsync(bog);
-            //result = await ExecuteQuery($"INSERT INTO {Constants.BookTablename} " +
-            //    $"(Forfatter, Titel, Synopsis, Hvorfor, Status, BilleLink, Format) " +
-            //    $"Forfatter = '{bog.Forfatter}', " +
-            //    $"Forfatter = '{bog.Titel}', " +
-            //    $"Forfatter = '{bog.Synopsis}', " +
-            //    $"Forfatter = '{bog.Hvorfor}', " +
-            //    $"Forfatter = '{bog.Status}', " +
-            //    $"Forfatter = '{bog.BilledeLink}', " +
-            //    $"Forfatter = '{bog.Format}' " );
         }
 
         bøger.Add(bog);
@@ -199,8 +181,6 @@ public partial class BogRepository
 
         if (result == 1)
         {
-            await Shell.Current.DisplayAlert("Resultat", $"{bog.Titel} blev slettet", "OK");
-
             var index = bøger.FindIndex(b => b.Id == bog.Id);
             bøger.RemoveAt(index);
         }

@@ -69,4 +69,11 @@ public partial class BøgerViewModel : BaseViewModel
             { "Id", bog.Id }
         });
     }
+
+    [RelayCommand]
+    async Task AddBook() =>
+        await Shell.Current.GoToAsync(nameof(BogDetaljerView), true, new Dictionary<string, object>
+        {
+            { "Id", 0 }
+        });
 }

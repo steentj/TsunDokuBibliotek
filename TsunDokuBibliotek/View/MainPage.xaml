@@ -13,30 +13,14 @@
          </ResourceDictionary>
     </ContentPage.Resources>
 
-    <!--<Shell.TitleView>
-        <HorizontalStackLayout HeightRequest="50"
-                               WidthRequest="400"
-                               Spacing="10"
-                               VerticalOptions="End">
-            <Label Text="Tsundoku bibliotek"
-                   TextColor="White"
-                   FontSize="Large"
-                   WidthRequest="350"
-                      HeightRequest="50"
-                   Margin="1"
-                   Padding="1"
-                   HorizontalOptions="Start"/>
-            <Button Text="⚙️"
-                    TextColor="White"
-                    FontSize="Large"
-                    WidthRequest="50"
-                    HeightRequest="50"
-                    Margin="1"
-                    Padding="1"
-                    HorizontalOptions="End"/>
-        </HorizontalStackLayout>
-    </Shell.TitleView>-->
-
+    <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Always" >
+    <VerticalStackLayout Padding="0" Margin="0">
+        <Button Text="Opret ny bog"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BøgerViewModel}}, Path=AddBookCommand}"
+                IsVisible="True"
+                Style="{StaticResource ButtonOutline}"
+                HorizontalOptions="End"
+                Margin="8"/>
     <Grid
         ColumnDefinitions="*,*"
         ColumnSpacing="0"
@@ -79,13 +63,6 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Text="Indlæs bøger"
-                Command="{Binding GetBøgerASyncCommand}"
-                IsEnabled="{Binding IsNotBusy}"
-                Grid.Row="1"
-                Grid.Column="0"
-                Style="{StaticResource ButtonOutline}"
-                Margin="8" />
         <ActivityIndicator IsVisible="{Binding IsBusy}"
                            IsRunning="{Binding IsBusy}"
                            HorizontalOptions="Fill"
@@ -94,5 +71,6 @@
                            Grid.RowSpan="2"
                            Grid.ColumnSpan="2" />
     </Grid>
- 
+    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

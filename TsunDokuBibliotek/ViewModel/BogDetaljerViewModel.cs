@@ -27,14 +27,17 @@ public partial class BogDetaljerViewModel : BaseViewModel
     [RelayCommand]
     private async Task Initialize()
     {
-        VistBog = await repository.GetBogAsync(Id);
-        if (Id != -1)
+        EditBog = new Bog();
+        if (Id > 0)
         {
-            EditBog = new Bog();
+            VistBog = await repository.GetBogAsync(Id);
             CopyBookDetailsToEditBook();
         }
-
-
+        else
+        {
+            IsEdit = true;
+            EditBog.BilledeLink = "defaultbook.png";
+        }
     }
 
     private void CopyBookDetailsToEditBook()
@@ -102,10 +105,17 @@ public partial class BogDetaljerViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    public void CancelEdit()
+    public async void CancelEdit()
     {
         IsEdit = false;
-        CopyBookDetailsToEditBook();
+        if (EditBog.Id > 0)
+        {
+            CopyBookDetailsToEditBook();
+        }
+        else
+        {
+            await Shell.Current.Navigation.PopAsync();
+        }
     }
 
     [RelayCommand]
