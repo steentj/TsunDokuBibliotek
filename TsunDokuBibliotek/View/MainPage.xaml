@@ -14,63 +14,63 @@
     </ContentPage.Resources>
 
     <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Always" >
-    <VerticalStackLayout Padding="0" Margin="0">
-        <Button Text="Opret ny bog"
-                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BøgerViewModel}}, Path=AddBookCommand}"
-                IsVisible="True"
-                Style="{StaticResource ButtonOutline}"
-                HorizontalOptions="End"
-                Margin="8"/>
-    <Grid
-        ColumnDefinitions="*,*"
-        ColumnSpacing="0"
-        RowDefinitions="Auto,*,Auto"
-        RowSpacing="0">
+        <VerticalStackLayout Padding="0" Margin="0">
+            <Button Text="Opret ny bog"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BøgerViewModel}}, Path=AddBookCommand}"
+                    IsVisible="True"
+                    Style="{StaticResource ButtonOutline}"
+                    HorizontalOptions="EndAndExpand"
+                    Margin="8"/>
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="0"
+                RowDefinitions="Auto,*,Auto"
+                RowSpacing="0">
 
-        <CollectionView ItemsSource="{Binding Bøger}"
-                        SelectionMode="None"
-                        Grid.Row="0"
-                        Grid.ColumnSpan="2">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Bog">
-                    <Grid Padding="5">
-                        <Frame HeightRequest="80"
-                               Style="{StaticResource CardView}"
-                               BorderColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BøgerViewModel}}, Path=GoToDetailsCommand}"
-                                    CommandParameter="{Binding .}"/>
-                            </Frame.GestureRecognizers>
-                            <Grid Padding="0" ColumnDefinitions="80,*">
-                                <Image Aspect="AspectFill"
-                                       Source="{Binding BilledeLink}"
-                                       WidthRequest="80"
-                                       HeightRequest="80"/>
-                                <VerticalStackLayout
-                                    Grid.Column="1"
-                                    VerticalOptions="Center"
-                                    Padding="10">
-                                    <Label Style="{StaticResource MediumLabel}"
-                                           Text="{Binding Forfatter}"/>
-                                    <Label Style="{StaticResource LargeLabel}"
-                                           Text="{Binding Titel}"/>
-                                </VerticalStackLayout>
+                <CollectionView ItemsSource="{Binding Bøger}"
+                                SelectionMode="None"
+                                Grid.Row="0"
+                                Grid.ColumnSpan="2">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Bog">
+                            <Grid Padding="5">
+                                <Frame HeightRequest="80"
+                                       Style="{StaticResource CardView}"
+                                       BorderColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BøgerViewModel}}, Path=GoToDetailsCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid Padding="0" ColumnDefinitions="80,*">
+                                        <Image Aspect="AspectFill"
+                                               Source="{Binding BilledeLink}"
+                                               WidthRequest="80"
+                                               HeightRequest="80"/>
+                                        <VerticalStackLayout
+                                            Grid.Column="1"
+                                            VerticalOptions="Center"
+                                            Padding="10">
+                                            <Label Style="{StaticResource MediumLabel}"
+                                                   Text="{Binding Forfatter}"/>
+                                            <Label Style="{StaticResource LargeLabel}"
+                                                   Text="{Binding Titel}"/>
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Frame>
                             </Grid>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-        <ActivityIndicator IsVisible="{Binding IsBusy}"
-                           IsRunning="{Binding IsBusy}"
-                           HorizontalOptions="Fill"
-                           VerticalOptions="Center"
-                           Color="{StaticResource Primary}"
-                           Grid.RowSpan="2"
-                           Grid.ColumnSpan="2" />
-    </Grid>
-    </VerticalStackLayout>
+                <ActivityIndicator IsVisible="{Binding IsBusy}"
+                                   IsRunning="{Binding IsBusy}"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Center"
+                                   Color="{StaticResource Primary}"
+                                   Grid.RowSpan="2"
+                                   Grid.ColumnSpan="2" />
+            </Grid>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
