@@ -4,11 +4,13 @@
              x:Class="TsundokuBibliotek.View.BogDetaljerView"
              xmlns:viewModel="clr-namespace:TsundokuBibliotek.ViewModel"
              xmlns:controls="clr-namespace:TsundokuBibliotek.Control"
-             xmlns:model="clr-namespace:TsundokuBibliotek.Model" xmlns:layouts="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:model="clr-namespace:TsundokuBibliotek.Model"
+             xmlns:layouts="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:globe="clr-namespace:System.Globalization;assembly=netstandard"
              x:DataType="viewModel:BogDetaljerViewModel"
              Title="{Binding VistBog.Titel}">
     <ScrollView>
-        <Grid RowDefinitions="Auto,Auto,*">
+        <Grid RowDefinitions="Auto,Auto,*" >
             <BoxView
                 BackgroundColor="{StaticResource Primary}"
                 Grid.RowSpan="2"
@@ -23,83 +25,105 @@
                     Margin="0,8,0,0"
                     HorizontalOptions="Center"
                     VerticalOptions="Center">
-                    <Image Aspect="AspectFill"
+                    <Image 
                         HeightRequest="160"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
-                        Source="{Binding VistBog.BilledeLink}"
-                        WidthRequest="160"/>
+                        Aspect="AspectFit"
+                        Source="{Binding BookImageLink}"
+                        Opacity="{Binding BookImageOpacity}"
+                        WidthRequest="140"/>
             </Border>
+            <Button 
+                Command="{Binding EditBookImageCommand}"
+                Style="{StaticResource ButtonOutline}"
+                IsVisible="{Binding IsEdit}"
+                IsEnabled="{Binding IsEdit}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Opacity="50"
+                Text="Nyt billede..."
+                HeightRequest="30"
+                WidthRequest="120"/>
 
             <HorizontalStackLayout Grid.Row="1" Padding="10" Spacing="10">
-                <Label Style="{StaticResource BoldLargeLabel}" 
-                        Grid.Row="1"
-                        TextColor="White"
-                        FontAttributes="Bold"
-                        Text="{Binding VistBog.Titel}" 
-                        HorizontalOptions="Center"
-                        Margin="0,13,0,8"
-                        IsVisible="{Binding IsNotEdit}"/>
-                <Entry Style="{StaticResource BoldLargeLabel}" 
-                        Grid.Row="1"
-                        TextColor="Black"
-                        BackgroundColor="White"
-                        FontAttributes="Bold"
-                        Text="{Binding EditBog.Titel, Mode=TwoWay}"
-                        Placeholder="Titel"
-                        ClearButtonVisibility="WhileEditing"
-                        HorizontalOptions="Center"
-                        Margin="0,0,0,8"
-                        IsVisible="{Binding IsEdit}">
-                    <Entry.Behaviors>
-                        <layouts:EventToCommandBehavior
-                            EventName="TextChanged"
-                            Command="{Binding ValidateCommand}" />
-                    </Entry.Behaviors>
-                    <Entry.Triggers>
-                        <DataTrigger 
-                            TargetType="Entry"
-                            Binding="{Binding IsValid}"
-                            Value="False">
-                            <Setter Property="BackgroundColor" Value="{StaticResource ErrorColor}" />
-                        </DataTrigger>
-                        <DataTrigger 
-                            TargetType="Entry"
-                            Binding="{Binding IsValid}"
-                            Value="True">
-                            <Setter Property="BackgroundColor" Value="White" />
-                        </DataTrigger>
-                    </Entry.Triggers>
-                </Entry>
+                <Grid ColumnDefinitions="Auto,60,60"
+                      Grid.Row="1">
+                    <Label Style="{StaticResource BoldLargeLabel}" 
+                            Grid.Column="0"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            Text="{Binding VistBog.Titel}" 
+                            IsVisible="{Binding IsNotEdit}"
+                            VerticalOptions="CenterAndExpand"
+                            MaximumWidthRequest="{OnIdiom 250, Phone=250, Tablet=500, Desktop=500}" />
+                    <Entry Style="{StaticResource BoldLargeLabel}" 
+                            Grid.Column="0"
+                            TextColor="Black"
+                            BackgroundColor="White"
+                            FontAttributes="Bold"
+                            Text="{Binding EditBog.Titel, Mode=TwoWay}"
+                            Placeholder="Titel"
+                            ClearButtonVisibility="WhileEditing"
+                            Margin="0,0,0,8"
+                            IsVisible="{Binding IsEdit}"
+                            IsSpellCheckEnabled="False"
+                            IsTextPredictionEnabled="False"
+                            MaximumWidthRequest="{OnIdiom 250, Phone=250, Tablet=500, Desktop=500}" >
+                        <Entry.Behaviors>
+                            <layouts:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding ValidateCommand}" />
+                        </Entry.Behaviors>
+                        <Entry.Triggers>
+                            <DataTrigger 
+                                TargetType="Entry"
+                                Binding="{Binding IsValid}"
+                                Value="False">
+                                <Setter Property="BackgroundColor" Value="{StaticResource ErrorColor}" />
+                            </DataTrigger>
+                            <DataTrigger 
+                                TargetType="Entry"
+                                Binding="{Binding IsValid}"
+                                Value="True">
+                                <Setter Property="BackgroundColor" Value="White" />
+                            </DataTrigger>
+                        </Entry.Triggers>
+                    </Entry>
 
-                <Button Text="🖋️"
-                        Command="{Binding EditBookCommand}"
-                        IsEnabled="{Binding IsNotEdit}"
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Style="{StaticResource ButtonOutline}"
-                        Margin="8"
-                        HorizontalOptions="End" />
+                    <Button Text="🖋️"
+                            Command="{Binding EditBookCommand}"
+                            IsEnabled="{Binding IsNotEdit}"
+                            Grid.Column="1"
+                            Style="{StaticResource ButtonOutline}"
+                            Margin="8" />
 
-                <Button Text="🗑️"
-                        Command="{Binding DeleteBookCommand}"
-                        IsEnabled="{Binding IsNotEdit}"
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Style="{StaticResource ButtonOutline}"
-                        Margin="8"
-                        HorizontalOptions="End" />
+                    <Button Text="🗑️"
+                            Command="{Binding DeleteBookCommand}"
+                            IsEnabled="{Binding IsNotEdit}"
+                            Grid.Column="2"
+                            Style="{StaticResource ButtonOutline}"
+                            Margin="8" />
+                </Grid>
             </HorizontalStackLayout>
             <VerticalStackLayout Grid.Row="2" Padding="10" Spacing="10">
-                <Label Style="{StaticResource BoldLargeLabel}" Text="{Binding VistBog.Forfatter}" IsVisible="{Binding IsNotEdit}" />
+                <Label Style="{StaticResource BoldLargeLabel}"
+                       Text="{Binding VistBog.Forfatter}"
+                       IsVisible="{Binding IsNotEdit}" />
                 <Entry Style="{StaticResource BoldLargeLabel}"
                        Text="{Binding EditBog.Forfatter, Mode=TwoWay}"
+                       IsSpellCheckEnabled="False"
+                       IsTextPredictionEnabled="False"
                        Placeholder="Forfatter"
                        ClearButtonVisibility="WhileEditing"
                        IsVisible="{Binding IsEdit}" />
-                <Label Style="{StaticResource MediumLabel}" Text="{Binding VistBog.Synopsis}" IsVisible="{Binding IsNotEdit}" />
+                <Label Style="{StaticResource MediumLabel}"
+                       Text="{Binding VistBog.Synopsis}"
+                       IsVisible="{Binding IsNotEdit}" />
                 <Editor Style="{StaticResource MediumLabel}"
                        Text="{Binding EditBog.Synopsis, Mode=TwoWay}"
+                       IsSpellCheckEnabled="False"
+                       IsTextPredictionEnabled="False"
                        Placeholder="Synopsis"
                        AutoSize="TextChanges"
                        IsVisible="{Binding IsEdit}" />
@@ -110,8 +134,11 @@
                        IsVisible="{Binding IsNotEdit}" />
                 <Editor  Style="{StaticResource MediumLabel}"
                         Text="{Binding EditBog.Hvorfor, Mode=TwoWay}"
+                        IsSpellCheckEnabled="False"
+                        IsTextPredictionEnabled="False"
                         Placeholder="Hvorfor"
                         AutoSize="TextChanges"
+                         Keyboard="Text"
                         IsVisible="{Binding IsEdit}" />
                 <HorizontalStackLayout Spacing="10">
                     <Label Style="{StaticResource MediumLabel}" Text="Status:" IsVisible="{Binding IsNotEdit}" />

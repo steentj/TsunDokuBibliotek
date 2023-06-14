@@ -2,8 +2,7 @@
 
 public partial class BogRepository
 {
-    //TODO Skal bruge path fra Settings
-    private string dbPath = Path.Combine(FileSystem.AppDataDirectory, Constants.LocalDbFile);
+    //private string dbPath = Path.Combine(FileSystem.AppDataDirectory, Constants.LocalDbFile);
     private SQLiteAsyncConnection cn;
 
     List<Bog> bøger = new();
@@ -15,6 +14,7 @@ public partial class BogRepository
           
         try
         {
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, Constants.LocalDbFile);
             cn = new SQLiteAsyncConnection(dbPath);
             Debug.WriteLine($"dbPath = {dbPath}");
             cn.Tracer = new Action<string>(q => Debug.WriteLine(q));
@@ -145,30 +145,12 @@ public partial class BogRepository
         if (bog.Id > 0)
         {
             result = await cn.UpdateAsync(bog);
-            //result = await ExecuteQuery($"UPDATE {Constants.BookTablename} SET " +
-            //    $"Forfatter = '{bog.Forfatter}', " +
-            //    $"Titel = '{bog.Titel}', " +
-            //    $"Synopsis = '{bog.Synopsis}', " +
-            //    $"Hvorfor = '{bog.Hvorfor}', " +
-            //    $"Status = '{bog.Status}', " +
-            //    $"BilledeLink = '{bog.BilledeLink}', " +
-            //    $"Format = '{bog.Format}' " +
-            //    $"WHERE Id = {bog.Id}");
             var index = bøger.FindIndex(b => b.Id == bog.Id);
             bøger.RemoveAt(index);
         }
         else
         {
             result = await cn.InsertAsync(bog);
-            //result = await ExecuteQuery($"INSERT INTO {Constants.BookTablename} " +
-            //    $"(Forfatter, Titel, Synopsis, Hvorfor, Status, BilleLink, Format) " +
-            //    $"Forfatter = '{bog.Forfatter}', " +
-            //    $"Forfatter = '{bog.Titel}', " +
-            //    $"Forfatter = '{bog.Synopsis}', " +
-            //    $"Forfatter = '{bog.Hvorfor}', " +
-            //    $"Forfatter = '{bog.Status}', " +
-            //    $"Forfatter = '{bog.BilledeLink}', " +
-            //    $"Forfatter = '{bog.Format}' " );
         }
 
         bøger.Add(bog);
@@ -191,7 +173,6 @@ public partial class BogRepository
         return bøger;
     }
 
-    [RelayCommand]
     public async Task DeleteBookAsync(Bog bog)
     {
         await Init();
@@ -199,8 +180,6 @@ public partial class BogRepository
 
         if (result == 1)
         {
-            await Shell.Current.DisplayAlert("Resultat", $"{bog.Titel} blev slettet", "OK");
-
             var index = bøger.FindIndex(b => b.Id == bog.Id);
             bøger.RemoveAt(index);
         }

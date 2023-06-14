@@ -5,12 +5,12 @@
              xmlns:viewModel="clr-namespace:TsundokuBibliotek.ViewModel"
              x:DataType="viewModel:TsundokuPreferencesViewModel"
              Title="Opsætning">
-    <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+    <VerticalStackLayout >
         <Label
             Text ="Folder til data:"
             Style="{StaticResource LargeLabel}"
              />
-        <StackLayout Orientation="Horizontal">
+        <HorizontalStackLayout >
             <Label
                 Text ="{Binding TsundokuSettings.TsundokuFolder}"
                 Style="{StaticResource MediumLabel}"
@@ -27,6 +27,6 @@
                                VerticalOptions="Center"
                                Color="{StaticResource Primary}"
                                Grid.ColumnSpan="2" />
-        </StackLayout>
-    </StackLayout>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>

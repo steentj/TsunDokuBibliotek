@@ -1,40 +1,52 @@
-﻿using TsundokuBibliotek.Model;
-using System.Collections;
-
-namespace TsundokuBibliotek.ViewModel;
+﻿namespace TsundokuBibliotek.ViewModel;
 
 [QueryProperty("Id", "Id")]
 public partial class BogDetaljerViewModel : BaseViewModel
 {
     BogRepository repository;
-    public BogDetaljerViewModel(BogRepository repository)
+    ImageRepository imageRepository;
+    public BogDetaljerViewModel(BogRepository repository, ImageRepository imageRepository)
     {
         this.repository = repository;
+        this.imageRepository = imageRepository;
     }
 
     [ObservableProperty]
     private int id;
 
     [ObservableProperty]
-    Bog vistBog;
+    private Bog vistBog;
 
     [ObservableProperty]
-    Bog editBog;
+    private Bog editBog;
 
     [ObservableProperty]
-    bool isValid;
+    private bool isValid;
+
+    [ObservableProperty]
+    private string bookImageLink;
+
+    [ObservableProperty]
+    private int bookImageOpacity;
 
     [RelayCommand]
     private async Task Initialize()
     {
-        VistBog = await repository.GetBogAsync(Id);
-        if (Id != -1)
+        EditBog = new Bog();
+        if (Id > 0)
         {
-            EditBog = new Bog();
+            VistBog = await repository.GetBogAsync(Id);
+            BookImageLink = VistBog.AbsolutBilledeLink;
+            BookImageOpacity = 70;
             CopyBookDetailsToEditBook();
         }
-
-
+        else
+        {
+            IsEdit = true;
+            BookImageLink = EditBog.AbsolutBilledeLink;
+            BookImageOpacity = 30;
+            EditBog.BilledeLink = Constants.DefaultBookImage;
+        }
     }
 
     private void CopyBookDetailsToEditBook()
@@ -57,6 +69,26 @@ public partial class BogDetaljerViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    public async void EditBookImage()
+    {
+        IsBusy = true;
+
+        var image = await ImageRepository.RetrieveImage();
+        image = ResizeImage(image);
+        var imagePath = await ImageRepository.SaveImage(image, Guid.NewGuid().ToString());
+        if (imagePath is not null)
+        {
+            EditBog.BilledeLink = imagePath;
+            BookImageOpacity = 30;
+            BookImageLink = EditBog.AbsolutBilledeLink;
+        }
+
+        IsBusy = false;
+    }
+
+    private static Graphics.IImage ResizeImage(Graphics.IImage image) => image?.Downsize(150, true);
+
+    [RelayCommand]
     private async Task SaveBook()
     {
         if (IsBusy)
@@ -69,7 +101,10 @@ public partial class BogDetaljerViewModel : BaseViewModel
             var op = await repository.SaveBookAsync(EditBog);
 
             if (op)
+            {
+                IsEdit = false;
                 await Shell.Current.Navigation.PopAsync();
+            }
         }
         catch (Exception ex)
         {
@@ -92,6 +127,7 @@ public partial class BogDetaljerViewModel : BaseViewModel
             if (confirm)
             {
                 await repository.DeleteBookAsync(VistBog);
+                IsEdit = false;
                 await Shell.Current.Navigation.PopAsync();
             }
         }
@@ -102,10 +138,17 @@ public partial class BogDetaljerViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    public void CancelEdit()
+    public async void CancelEdit()
     {
         IsEdit = false;
-        CopyBookDetailsToEditBook();
+        if (EditBog.Id > 0)
+        {
+            CopyBookDetailsToEditBook();
+        }
+        else
+        {
+            await Shell.Current.Navigation.PopAsync();
+        }
     }
 
     [RelayCommand]

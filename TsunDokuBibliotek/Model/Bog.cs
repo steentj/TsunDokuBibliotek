@@ -6,6 +6,12 @@ public class Bog : BaseTable
     public string Forfatter { get; set; }
     public string Titel { get; set; }
     public string BilledeLink { get; set; }
+    // HACK I cannot figure out how to have a fixed file location - especially across platforms.
+    // In the IOS simulator AppDataDirectory changes for each run.
+    // The defaultbook.png is located in raw resources and are thus not in the AppDataDirectory
+    [SQLite.Ignore]
+    public string AbsolutBilledeLink =>
+        BilledeLink == Constants.DefaultBookImage ? Constants.DefaultBookImage : Path.Combine(FileSystem.AppDataDirectory, BilledeLink);
     public string Synopsis { get; set; }
     public string Hvorfor { get; set; }
     [JsonConverter(typeof(JsonStringEnumConverter))]

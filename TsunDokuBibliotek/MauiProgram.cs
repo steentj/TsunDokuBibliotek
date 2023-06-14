@@ -1,7 +1,5 @@
-﻿using CommunityToolkit.Maui.Storage;
-using Microsoft.Extensions.Logging;
+﻿namespace TsundokuBibliotek;
 
-namespace TsundokuBibliotek;
 public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
@@ -16,9 +14,10 @@ public static class MauiProgram
             fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
         });
 #if DEBUG
-        //builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
         builder.Services.AddSingleton<BogRepository>();
+        builder.Services.AddSingleton<ImageRepository>();
         builder.Services.AddSingleton<BøgerViewModel>();
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<TsundokuPreferenceView>();

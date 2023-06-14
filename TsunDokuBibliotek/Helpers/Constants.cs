@@ -5,6 +5,7 @@
 		public const string LocalDbFile = "tsundoku_v01.db";
 		public const string BookTablename = "book";
 		public const string BookNoteTablename = "booknotes";
+		public const string DefaultBookImage = "defaultbook.png";
 
 		public static string CreateBookTable =
 			$"CREATE TABLE IF NOT EXISTS {BookTablename} " +

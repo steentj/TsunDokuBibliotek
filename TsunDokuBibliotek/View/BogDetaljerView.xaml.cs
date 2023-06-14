@@ -17,8 +17,4 @@ public partial class BogDetaljerView : ContentPage
 
         await vm.InitializeCommand.ExecuteAsync(null);
     }
-
-    void Picker_SelectedIndexChanged(System.Object sender, System.EventArgs e)
-    {
-    }
 }

@@ -31,7 +31,7 @@
     </Shell.Resources>
 
     <Shell.FlyoutHeader>
-        <StackLayout Orientation="Horizontal" Spacing="20" Padding="20,0">
+        <HorizontalStackLayout Spacing="20" Padding="20,0">
             <Label Text="Tsundoku"
                    TextColor="{StaticResource Primary}"
                    FontAttributes="Bold"
@@ -39,46 +39,53 @@
             <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:dd MMM yyyy}'}"
                    TextColor="{StaticResource Primary}"
                    HorizontalOptions="End" />
-        </StackLayout>
+        </HorizontalStackLayout>
     </Shell.FlyoutHeader>
 
-    <!--<Shell.FlyoutFooter>
-        <controls:FlyoutFooter />
-    </Shell.FlyoutFooter>-->
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid Padding="10,10,0,10"
+                  ColumnDefinitions="40,*">
+                <Image Grid.Column="0"
+                       HeightRequest="30"
+                       WidthRequest="30"
+                       Source="{Binding Icon}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start" 
+                       />
+                <Label Grid.Column="1"
+                       Text="{Binding Title}"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
 
-    <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent
-            Route="MainPage"
-            Title="Bøger"
-            Icon="book_transparent.png"
-            Style="{StaticResource DomesticShell}"
-            ContentTemplate="{DataTemplate local:MainPage}" />
+    <FlyoutItem Route="bøger" Title="Bøger" Icon="book_transparent.png" >
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+        </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems" IsEnabled="False">
-        <ShellContent
-            Route="Review"
-            Title="Repetér"
-            Icon="bulb_transparent.png"
-            Style="{StaticResource DomesticShell}"/>
+    <FlyoutItem Route="bøger" Title="Repeter" Icon="bulb_transparent.png" IsEnabled="False">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+        </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems" >
-        <ShellContent
-            Route="TsundokuPreferenceView"
-            Title="Opsætning"
-            Icon="settings_transparent.png"
-            Style="{StaticResource DomesticShell}"
-            ContentTemplate="{DataTemplate local:TsundokuPreferenceView}" />
+    <FlyoutItem Title="Opsætning" Icon="settings_transparent.png">
+        <Tab>
+            <ShellContent Route="TsundokuPreferenceView" ContentTemplate="{DataTemplate local:TsundokuPreferenceView}" />
+        </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Route="bøger" FlyoutDisplayOptions="AsMultipleItems" IsEnabled="True">
-        <ShellContent
-            Route="About"
-            Title="Om"
-            Icon="info_transparent.png"
-            Style="{StaticResource DomesticShell}"
-            ContentTemplate="{DataTemplate local:AboutView}" />
+    <FlyoutItem Route="About" Title="Om" Icon="info_transparent.png">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:AboutView}" />
+        </Tab>
     </FlyoutItem>
+
 </Shell>
 

@@ -25,16 +25,19 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#512BD4" />
-		<!-- <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" /> -->
+		<!--<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#512BD4" />-->
+		<MauiSplashScreen Include="Resources\Splash\tranesplash.svg" Color="#512BD4" BaseSize="128,128" /> 
 
 		<!-- Images -->
-		<MauiImage Include="Resources\Images\*.*g" />
+		<MauiImage Include="Resources\Images\*.*" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -44,17 +47,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
-	  <PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	  <PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.5" />
 	  <PackageReference Include="SQLitePCLRaw.core" Version="2.1.5" />
 	  <PackageReference Include="SQLitePCLRaw.provider.sqlite3" Version="2.1.5" />
 	  <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.5" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Remove="Control\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Control\" />
 	</ItemGroup>
 </Project>
