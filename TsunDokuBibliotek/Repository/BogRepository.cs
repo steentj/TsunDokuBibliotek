@@ -2,8 +2,7 @@
 
 public partial class BogRepository
 {
-    //TODO Skal bruge path fra Settings
-    private string dbPath = Path.Combine(FileSystem.AppDataDirectory, Constants.LocalDbFile);
+    //private string dbPath = Path.Combine(FileSystem.AppDataDirectory, Constants.LocalDbFile);
     private SQLiteAsyncConnection cn;
 
     List<Bog> bøger = new();
@@ -15,6 +14,7 @@ public partial class BogRepository
           
         try
         {
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, Constants.LocalDbFile);
             cn = new SQLiteAsyncConnection(dbPath);
             Debug.WriteLine($"dbPath = {dbPath}");
             cn.Tracer = new Action<string>(q => Debug.WriteLine(q));
@@ -173,7 +173,6 @@ public partial class BogRepository
         return bøger;
     }
 
-    [RelayCommand]
     public async Task DeleteBookAsync(Bog bog)
     {
         await Init();

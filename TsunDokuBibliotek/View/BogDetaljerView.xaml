@@ -25,13 +25,26 @@
                     Margin="0,8,0,0"
                     HorizontalOptions="Center"
                     VerticalOptions="Center">
-                    <Image Aspect="AspectFill"
+                    <Image 
                         HeightRequest="160"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
-                        Source="{Binding VistBog.BilledeLink}"
-                        WidthRequest="160"/>
+                        Aspect="AspectFit"
+                        Source="{Binding BookImageLink}"
+                        Opacity="{Binding BookImageOpacity}"
+                        WidthRequest="140"/>
             </Border>
+            <Button 
+                Command="{Binding EditBookImageCommand}"
+                Style="{StaticResource ButtonOutline}"
+                IsVisible="{Binding IsEdit}"
+                IsEnabled="{Binding IsEdit}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Opacity="50"
+                Text="Nyt billede..."
+                HeightRequest="30"
+                WidthRequest="120"/>
 
             <HorizontalStackLayout Grid.Row="1" Padding="10" Spacing="10">
                 <Grid ColumnDefinitions="Auto,60,60"

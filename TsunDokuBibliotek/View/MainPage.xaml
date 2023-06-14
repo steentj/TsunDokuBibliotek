@@ -44,7 +44,7 @@
                                     </Frame.GestureRecognizers>
                                     <Grid Padding="0" ColumnDefinitions="80,*">
                                         <Image Aspect="AspectFill"
-                                               Source="{Binding BilledeLink}"
+                                               Source="{Binding AbsolutBilledeLink}"
                                                WidthRequest="80"
                                                HeightRequest="80"/>
                                         <VerticalStackLayout

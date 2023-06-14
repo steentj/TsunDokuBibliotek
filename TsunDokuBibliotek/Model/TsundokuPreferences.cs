@@ -3,5 +3,5 @@ namespace TsundokuBibliotek.Model;
 
 public class TsundokuPreferences
 {
-    public string TsundokuFolder { get; set; }
+    public static string TsundokuFolder => FileSystem.AppDataDirectory;
 }

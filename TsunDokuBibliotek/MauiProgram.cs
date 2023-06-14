@@ -17,6 +17,7 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
         builder.Services.AddSingleton<BogRepository>();
+        builder.Services.AddSingleton<ImageRepository>();
         builder.Services.AddSingleton<BøgerViewModel>();
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<TsundokuPreferenceView>();
