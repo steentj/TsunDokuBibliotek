@@ -15,7 +15,6 @@ global using System.Diagnostics;
 global using System.Text.Json;
 global using Microsoft.Extensions.Logging;
 
-global using Graphics = Microsoft.Maui.Graphics;
-global using Microsoft.Maui.Graphics.Platform;
+global using Microsoft.Maui.Graphics;
 
 global using SQLite;

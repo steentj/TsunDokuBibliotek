@@ -86,7 +86,7 @@ public partial class BogDetaljerViewModel : BaseViewModel
         IsBusy = false;
     }
 
-    private static Graphics.IImage ResizeImage(Graphics.IImage image) => image?.Downsize(150, true);
+    private static Microsoft.Maui.Graphics.IImage ResizeImage(Microsoft.Maui.Graphics.IImage image) => image?.Downsize(150, true);
 
     [RelayCommand]
     private async Task SaveBook()

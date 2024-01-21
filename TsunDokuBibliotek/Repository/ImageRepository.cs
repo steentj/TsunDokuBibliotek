@@ -2,7 +2,7 @@
 
 public partial class ImageRepository
 {
-    public static async Task<Graphics.IImage> RetrieveImage()
+    public static async Task<Microsoft.Maui.Graphics.IImage> RetrieveImage()
     {
         try
         {
@@ -11,11 +11,15 @@ public partial class ImageRepository
             if (imagePath?.FullPath is null)
                 return null;
 
-            Graphics.IImage image;
+            Microsoft.Maui.Graphics.IImage image;
 
             using (Stream stream = File.OpenRead(imagePath.FullPath))
             {
-                image = PlatformImage.FromStream(stream);
+#if WINDOWS
+                image = Microsoft.Maui.Graphics.IImage;
+#else
+                image = Microsoft.Maui.Graphics.Platform.PlatformImage.FromStream(stream);
+#endif
             }
             return image;
         }
@@ -26,7 +30,7 @@ public partial class ImageRepository
         }
     }
 
-    public static async Task<string> SaveImage(Graphics.IImage image, string imageName)
+    public static async Task<string> SaveImage(Microsoft.Maui.Graphics.IImage image, string imageName)
     {
         if (image is null)
             return null;
